@@ -1,6 +1,5 @@
 const fs = require("fs");
 const htmlmin = require("html-minifier");
-const Image = require("@11ty/eleventy-img");
 const markdownIt = require("markdown-it");
 const markdownItAttrs = require('markdown-it-attrs');
 const markdownItEmoji = require("markdown-it-emoji");
@@ -13,24 +12,6 @@ const removeTrailingSlash = (url) => {
     throw new Error(`${removeTrailingSlash.name}: expected argument of type string but instead got ${url} (${typeof url})`);
   }
   return url.replace(/\/$/, '');
-}
-
-async function imageShortcode(src, cls, alt, sizes) {
-  let metadata = await Image(src, {
-    widths: [600, 900, 1500],
-    formats: ["webp"],
-    outputDir: "./public/img/"
-  });
-
-  let imageAttributes = {
-    class: cls,
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  };
-
-  return Image.generateHTML(metadata, imageAttributes);
 }
 
 module.exports = function (eleventyConfig) {
@@ -51,9 +32,6 @@ module.exports = function (eleventyConfig) {
     }).use(markdownItAttrs).use(markdownItEmoji)
   )
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-  eleventyConfig.addLiquidShortcode("image", imageShortcode);
-
   eleventyConfig.addPassthroughCopy({ './src/static/': '/' });
   eleventyConfig.addPassthroughCopy({
     './node_modules/alpinejs/dist/cdn.min.js': '/js/alpine.js',
@@ -69,8 +47,8 @@ module.exports = function (eleventyConfig) {
       }
     ],
     callbacks: {
-      ready: function (err, bs) {
-        bs.addMiddleware("*", (req, res) => {
+      ready: function (_, bs) {
+        bs.addMiddleware("*", (_, res) => {
           const content_404 = fs.readFileSync('public/404.html');
           res.writeHead(404, { "Content-Type": "text/html; charset=UTF-8" });
           res.write(content_404);

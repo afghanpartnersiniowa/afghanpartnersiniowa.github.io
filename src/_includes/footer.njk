@@ -1,12 +1,8 @@
-<footer class="relative flex flex-col w-full py-10 text-lg sm:flex-row sm:justify-center">
+<footer class="relative flex flex-col w-full py-10 text-lg sm:flex-row sm:justify-center bg-white">
   <div class="px-8 py-4 text-center">
     <ul class="list-none">
       <li>
-        <a class="no-underline hover:text-customRed"
-          href="{% if isFront %}#about{% else %}{{ env.url }}/#about{% endif %}">About</a>
-      </li>
-      <li>
-        <a class="no-underline hover:text-customRed" href="/credits">Credits</a>
+        <a class="no-underline hover:text-customRed" href="/about-us">About Us</a>
       </li>
     </ul>
   </div>
@@ -15,8 +11,9 @@
     <ul class="list-none">
       {% for item in site.social %}
       <li>
-        <a class="no-underline hover:text-customRed" href="{{ item.url }}" target="_blank" rel="_noopener">{{ item.title
-          }}</a>
+        <a class="no-underline hover:text-customRed" href="{{ item.url }}" target="_blank" rel="noopener noreferrer nofollow">
+          {{ item.title }}
+        </a>
       </li>
       {% endfor %}
     </ul>

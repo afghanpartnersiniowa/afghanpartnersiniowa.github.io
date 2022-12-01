@@ -9,8 +9,4 @@ module.exports = {
     environment,
     isProd,
     url,
-    tracking: {
-        gtag: 'MY-GTAG-ID',
-        pixelId: 'MY-PIXEL-ID',
-    },
 };

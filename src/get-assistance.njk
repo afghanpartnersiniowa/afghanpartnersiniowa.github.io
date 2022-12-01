@@ -1,0 +1,35 @@
+---
+layout: page.njk
+title: Get assistance
+desc: Afghan Partners in Iowa
+---
+
+{% import "./_includes/content/forms.njk" as forms %}
+
+{% call forms.form(
+  'get-assistance-form',
+  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
+  '{first: "", last: "", email: "", phone: "", street: "", city: "", state: "IA", zip: "", msg: "", errors: false}')
+%}
+  <p x-cloak class="text-secondary-400 mb-6" x-show="errors">Please correct the errors below before submitting</p>
+  {{ forms.field('First (given) name', name='first-name', model='first', labelClass='required') }}
+  {{ forms.error('Please enter your first name', 'errors && first.length === 0') }}
+  {{ forms.field('Last (family) name', name='last-name', model='last', labelClass='required') }}
+  {{ forms.error('Please enter your last name', 'errors && last.length === 0') }}
+  {{ forms.field('Email address', name='email-address', model='email', inputClass='mb-6') }}
+  {{ forms.field('Phone number', name='phone-number', model='phone', placeholder='515-123-1234') }}
+  {{ forms.error('Please provide either your Email Address or Phone Number', 'errors && phone.length === 0 && email.length === 0') }}
+  {{ forms.field('Street Address', name='street-address', model='street', placeholder='123 Main Street', inputClass='mb-6') }}
+  {{ forms.field('City', name='city', model='city', labelClass='required') }}
+  {{ forms.error('City is required', 'errors && city.length === 0') }}
+  {{ forms.field('State', name='state', model='state', value='IA', labelClass='required') }}
+  {{ forms.multiError('State is required', 'errors && state.length === 0', 'At this time, we can only help Afghan Refugees living in Iowa.', 'errors && state.length > 0 && ["IA", "IOWA"].indexOf(state.toUpperCase()) === -1') }}
+  {{ forms.field('Zip (postal) code', name='postal-code', model='zip', inputClass='mb-6') }}
+  {{ forms.field('How can we help?', name='message', model='msg', type='textarea', labelClass='required') }}
+  {{ forms.error('Please provide a message', 'errors && msg.length === 0') }}
+  <button name="submit"
+          class="border border-primary-500 bg-primary-500 text-white rounded-md px-4 py-2 m-2 select-none hover:bg-primary-600 focus:outline-none focus:shadow-outline disabled:opacity-75 disabled:bg-gray-500 disabled:hover:bg-gray-500"
+          :type="(first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || ['IA', 'IOWA'].indexOf(state.toUpperCase()) === -1  || msg.length === 0) ? 'button' : 'submit'"
+          @click="errors = $el.type === 'button';errors && window.scrollTo(0,0);"
+  >Send</button>
+{% endcall %}

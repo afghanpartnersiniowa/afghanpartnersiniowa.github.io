@@ -1,0 +1,27 @@
+---
+layout: page.njk
+title: How to help
+desc: Afghan Partners in Iowa
+---
+
+{% import "./_includes/content/forms.njk" as forms %}
+
+{% call forms.form(
+  'help-form',
+  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Offer%20to%20Help',
+  '{first: "", last: "", email: "", phone: "", errors: false}')
+%}
+  <p x-cloak class="text-secondary-400 mb-6" x-show="errors">Please correct the errors below before submitting</p>
+  {{ forms.field('First (given) name', name='first-name', model='first', labelClass='required') }}
+  {{ forms.error('Please enter your first name', 'errors && first.length === 0') }}
+  {{ forms.field('Last (family) name', name='last-name', model='last', labelClass='required') }}
+  {{ forms.error('Please enter your last name', 'errors && last.length === 0') }}
+  {{ forms.field('Email address', name='email-address', model='email', inputClass='mb-6') }}
+  {{ forms.field('Phone number', name='phone-number', model='phone', placeholder='515-123-1234') }}
+  {{ forms.error('Please provide either your Email Address or Phone Number', 'errors && phone.length === 0 && email.length === 0') }}
+  <button name="submit"
+          class="border border-primary-500 bg-primary-500 text-white rounded-md px-4 py-2 m-2 select-none hover:bg-primary-600 focus:outline-none focus:shadow-outline disabled:opacity-75 disabled:bg-gray-500 disabled:hover:bg-gray-500"
+          :type="(first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0)) ? 'button' : 'submit'"
+          @click="errors = $el.type === 'button';errors && window.scrollTo(0,0);"
+  >Send</button>
+{% endcall %}
