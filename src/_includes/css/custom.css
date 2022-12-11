@@ -73,7 +73,7 @@ nav#header {
 }
 
 #menuHeader a img {
-  width: 7.5rem;
+  width: 6rem;
 }
 
 /* Responsive navigation */
@@ -89,12 +89,12 @@ nav#header {
   position: absolute;
   width: 24px;
   height: 2px;
-  background: theme('colors.primary.DEFAULT');
+  background: theme('colors.white');
   transform: rotate(0);
 }
 
 .hamburger:hover [class*="-bun"] {
-  background: theme('colors.primary.DEFAULT');
+  background: theme('colors.white');
 }
 
 .hamburger__top-bun {
@@ -129,6 +129,10 @@ nav#header {
 @media screen(sm) {
   #menuHeader a {
     left: .8rem;
+  }
+
+  #menuHeader a img {
+    width: 7.5rem;
   }
 
   nav#header {

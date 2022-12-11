@@ -1,11 +1,11 @@
 {% macro card(heading, summary, postDate, link, buttonText='Read more') %}
   <article class="container bg-white shadow-md rounded-2xl p-5 m-2 border-2 border-slate-50">
     <h1 class="font-bold text-primary-600">{{ heading }}</h1>
-    <p class="font-light text-gray-500">{{ summary }}</p>
+    <p class="font-light text-gray-500">{{ summary | safe }}</p>
     <h6 class="text-sm text-gray-300 mb-5">Posted on {{ postDate }}</h6>
     <a href="{{ link }}"
-       target="{{ '_blank' if link.indexOf('https://') === 0 }}"
-       rel="{{ 'noreferrer noopener' if link.indexOf('https://') === 0 }}"
+       target="{{ '_blank' if link.indexOf('http') === 0 }}"
+       rel="{{ 'noopener noreferrer nofollow' if link.indexOf('http') === 0 }}"
        class="rounded-lg py-2 px-4 text-center text-white bg-primary-400 hover:bg-primary-500"
     >{{ buttonText }}</a>
   </article>

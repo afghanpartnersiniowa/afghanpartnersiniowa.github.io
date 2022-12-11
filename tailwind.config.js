@@ -31,6 +31,7 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
+      sky: colors.sky,
     },
     fontFamily: {
       sans: ["Source Sans Pro", "Arial", "Helvetica", "sans-serif"],

@@ -36,6 +36,18 @@
 }
 
 @layer utilities {
+  .bg-primary\/80 {
+    background-color: rgba(0,102,51,.80);
+  }
+
+  .bg-primary\/85 {
+    background-color: rgba(0,102,51,.85);
+  }
+
+  .bg-primary\/90 {
+    background-color: rgba(0,102,51,.90);
+  }
+
   .mh-fill {
     @apply min-h-[-webkit-fill-available];
   }
@@ -82,5 +94,9 @@
 
   .max-h-screen-80 {  
     max-height: 80vh;
+  }
+
+  .h-screen-80 {  
+    height: 80vh;
   }
 }

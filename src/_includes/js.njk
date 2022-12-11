@@ -6,14 +6,17 @@
     let nav = document.getElementById('menu');
     if (btn.classList.contains('open')) {
       nav.removeEventListener("click", navToggle);
-    }
-    else {
+      btn.ariaLabel = 'Show Menu';
+    } else {
       nav.addEventListener("click", navToggle, { once: true });
+      btn.ariaLabel = 'Hidebm  Menu';
     }
     body.classList.toggle('overflow-y-hidden');
     header.classList.toggle('z-20');
     btn.classList.toggle('open');
     nav.classList.toggle('flex');
     nav.classList.toggle('hidden');
+
+    header.querySelector('a').classList.toggle('border-black');
   }
 </script>

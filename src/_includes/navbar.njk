@@ -1,17 +1,19 @@
 <nav id="header"
-  class="flex flex-col items-center md:justify-between w-full px-4 py-1 bg-transparent shadow-none sm:flex-row sm:px-6 sm:bg-black sm:shadow">
+  class="flex flex-col items-center md:justify-between w-full px-4 py-1 bg-transparent shadow-none sm:flex-row sm:px-6 bg-black sm:shadow">
   <div id="menuHeader"
     class="flex flex-row flex-no-wrap items-center self-start justify-between w-full sm:w-auto sm:self-center sm:flex-none">
     <a aria-label="Home" href="/" class="relative inline hover:no-underline bg-white border-4 border-black">
       {{ plaiceholder.logoTitle | safe }}
     </a>
     <div></div>
-    <button id="menuBtn" class="block hamburger sm:hidden focus:outline-none" type="button" onclick="navToggle();"
-      aria-label="Show Menu"><span class="hamburger__top-bun"></span><span
-        class="hamburger__bottom-bun"></span></button>
+    <button id="menuBtn" class="block hamburger sm:hidden focus:outline-none bg-black" type="button" onclick="navToggle();"
+      aria-label="Show Menu">
+      <span class="hamburger__top-bun"></span>
+      <span class="hamburger__bottom-bun"></span>
+    </button>
   </div>
   <div id="menu"
-    class="fixed inset-0 z-10 flex-col items-center self-end justify-center hidden h-full py-6 sm:relative sm:w-auto sm:self-center sm:flex sm:flex-row sm:py-0">
+    class="fixed inset-0 z-10 flex-col items-center self-end justify-center hidden h-full py-6 sm:relative sm:w-auto sm:self-center sm:flex sm:flex-row sm:py-0 bg-black">
     <a class="nav" href="/about-us">About us</a>
     <a class="nav" href="/get-assistance">Get assistance</a>
     <a class="nav" href="/how-to-help">How to help</a>
