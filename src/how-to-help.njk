@@ -26,12 +26,12 @@ desc: Afghan Partners in Iowa
   >Send</button>
 {% endcall %}
 
-<script src="https://www.google.com/recaptcha/api.js?render=6LcUnG0jAAAAAIm-Y3Dz08kZ91f-5jthNxgsGV_O" defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ env.recaptchaSiteKey }}" defer></script>
 
 <script>
   function submitContactForm() {
     grecaptcha.ready(function() {
-      grecaptcha.execute('6LcUnG0jAAAAAIm-Y3Dz08kZ91f-5jthNxgsGV_O', { action: 'submit' }).then(function(token) {
+      grecaptcha.execute('{{ env.recaptchaSiteKey }}', { action: 'submit' }).then(function(token) {
         document.querySelector('input[name="recaptchaToken"]').value = token;
         document.querySelector('form[name="help-form"]').submit();
       });
