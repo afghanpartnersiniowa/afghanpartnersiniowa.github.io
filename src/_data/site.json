@@ -4,11 +4,5 @@
   "author": "Afghan Partners in Iowa",
   "image": "/img/logo.png",
   "language": "en",
-  "social": [
-    {
-      "title": "Facebook",
-      "url": "todo",
-      "image": "#facebook-unauth-icon"
-    }
-  ]
+  "social": []
 }

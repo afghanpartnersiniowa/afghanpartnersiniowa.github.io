@@ -30,7 +30,7 @@ desc: Afghan Partners in Iowa
   <input class="hidden" name="recaptchaToken" value="">
   <button class="border border-primary-500 bg-primary-500 text-white rounded-md px-4 py-2 m-2 select-none hover:bg-primary-600 focus:outline-none focus:shadow-outline disabled:opacity-75 disabled:bg-gray-500 disabled:hover:bg-gray-500"
           type="button"
-          @click="errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || ['IA', 'IOWA'].indexOf(state.toUpperCase()) === -1  || msg.length === 0);errors ? window.scrollTo(0,0) : submitContactForm()"
+          @click="errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || ['IA', 'IOWA'].indexOf(state.toUpperCase()) === -1  || msg.length === 0); errors ? window.scrollTo(0,0) : submitContactForm()"
   >Send</button>
 {% endcall %}
 
