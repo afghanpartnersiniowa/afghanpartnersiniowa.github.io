@@ -1,6 +1,7 @@
 {% macro form(name, action, xData, method='post') %}
-  <form name="{{ name }}" action="{{ action }}" method="{{ method }}" x-data="{{ xData }}">
+  <form name="{{ name }}" action="{{ action }}" method="{{ method }}" x-data="{{ xData }}" x-init="$watch('submitCount', () => errors ? window.scrollTo(0,0) : submitContactForm())">
     <p x-cloak class="text-secondary-400 mb-6" x-show="errors">Please correct the errors below before submitting</p>
+    <p class="required mb-4">Required</p>
     {{ caller() }}
     <input class="hidden" name="recaptchaToken" value="">
   </form>
@@ -12,21 +13,23 @@
   >{{ text }}</button>
 {% endmacro %}
 
-{% macro input(name, value='', type='text', placeholder='', class='', rows='4', model='') %}
+{% macro input(name, value='', type='text', placeholder='', class='', rows='4', model='', validate=false, validation=false) %}
   {% if type === 'textarea' %}
     <textarea name="{{ name }}" id="{{ name }}"
               value="{{ value | escape }}"
-              class="block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
+              class="peer block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
               placeholder="{{ placeholder }}"
               rows="{{ rows }}"
               x-model="{{ model }}"
+              x-init="$watch('submitCount', () => $el.setCustomValidity(errors && {{ validation }} ? 'Invalid field.' : ''))">
     ></textarea>
   {% else %}
     <input type="{{ type }}" name="{{ name }}" id="{{ name }}"
            value="{{ value | escape }}"
-           class="block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
+           class="peer block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
            placeholder="{{ placeholder }}"
-           x-model="{{ model }}">
+           x-model="{{ model }}"
+           x-init="{{ validate }} && $watch('submitCount', () => $el.setCustomValidity(errors && ({{ validation }} ? {{ validation }} : {{ model }}.length === 0) ? 'Invalid field.' : ''))">
   {% endif %}
 {% endmacro %}
 
@@ -34,21 +37,34 @@
   <label for="{{ forHtml }}" class="{{ class }}">{{ text }}</label>
 {% endmacro %}
 
-{% macro field(text, name, value='', type='text', placeholder='', inputClass='', rows='4', model='', labelClass='') %}
-  {{ label(text, name, labelClass) }}
-  {{ input(name, value, type, placeholder, inputClass, rows, model) }}
+{% macro field(
+  text,
+  name,
+  value='',
+  type='text',
+  placeholder='',
+  inputClass='',
+  rows='4',
+  model='',
+  labelClass='',
+  validation=false,
+  errorText=''
+) %}
+  <div>
+    {{ label(text, name, labelClass) }}
+    {{ input(name, value, type, placeholder, inputClass, rows, model, errorText.length, validation) }}
+    {% if errorText %}
+      {{ error(errorText) }}
+    {% endif %}
+  </div>
 {% endmacro %}
 
-{% macro error(message, show, class='mb-2') %}
-  <p x-cloak class="text-secondary-400 text-sm {{ class }}" :class="{{ show }} || 'invisible'">{{ message }}</p>
-{% endmacro %}
-
-{% macro multiError(message1, show1, message2, show2, class='mb-2') %}
-  <p x-cloak class="text-secondary-400 text-sm {{ class }}" :class="{{ show1 }} || {{ show2 }} || 'invisible'" x-text="({{ show1 }} ? '{{ message1 }}' : '') + ({{ show2 }} ? '{{ message2 }}' : '&nbsp;')"></p>
+{% macro error(message) %}
+  <p class="text-secondary-400 text-sm invisible peer-invalid:visible mb-2">{{ message }}</p>
 {% endmacro %}
 
 {% macro recaptchaScript(siteKey, formName) %}
-  <script src="https://www.google.com/recaptcha/api.js?render={{ siteKey }}" defer></script>
+  <script async src="https://www.google.com/recaptcha/api.js?render={{ siteKey }}"></script>
 
   <script>
     function submitContactForm() {
@@ -60,4 +76,12 @@
       });
     }
   </script>
+{% endmacro %}
+
+{% macro recaptchaDisclaimer() %}
+  <p class="text-sm font-light mb-4">
+    This site is protected by reCAPTCHA and the Google
+    <a href="https://policies.google.com/privacy" class="external">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms" class="external">Terms of Service</a> apply.
+  </p>
 {% endmacro %}

@@ -19,8 +19,17 @@
     </ul>
   </div>
 </footer>
-<div class="w-full bg-white">
-  <span class="block pb-5 text-sm font-light text-center">
-    &copy; {{ site.author }}, <span x-data x-text="new Date().getFullYear()"></span>
-  </span>
+<div class="w-full bg-black text-white py-5">
+  <div class="w-full m-auto grid md:w-4/5 xl:w-3/4 md:grid-cols-2 px-4 md:px-0">
+    <div class="text-center mb-4 md:mb-0 md:text-left md:w-3/4 xl:w-full">
+      <p class="inline-block text-sm font-light">
+        {{ site.author }} is a registered 501(c)(3) not-for-profit organization.
+      </p>
+    </div>
+    <div class="text-center md:text-right w-full">
+      <p class="inline-block text-sm font-light">
+        Copyright &copy; {{ site.author }}, <span x-data x-text="new Date().getFullYear()"></span>
+      </p>
+    </div>
+  </div>
 </div>

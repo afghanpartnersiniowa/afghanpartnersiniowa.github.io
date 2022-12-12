@@ -1,21 +1,27 @@
 <script>
   function navToggle() {
-    let body = document.getElementById('top');
-    let header = document.getElementById('menuHeader');
-    let btn = document.getElementById('menuBtn');
-    let nav = document.getElementById('menu');
+    var body = document.getElementById('top');
+    var header = document.getElementById('menuHeader');
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('menu');
     if (btn.classList.contains('open')) {
       nav.removeEventListener("click", navToggle);
       btn.ariaLabel = 'Show Menu';
     } else {
       nav.addEventListener("click", navToggle, { once: true });
-      btn.ariaLabel = 'Hidebm  Menu';
+      btn.ariaLabel = 'Hide  Menu';
     }
     body.classList.toggle('overflow-y-hidden');
     header.classList.toggle('z-20');
     btn.classList.toggle('open');
     nav.classList.toggle('flex');
     nav.classList.toggle('hidden');
+
+    var burgers = btn.querySelectorAll('span');
+    burgers[0].classList.toggle('right-5');
+    burgers[1].classList.toggle('right-5');
+    burgers[0].classList.toggle('right-1');
+    burgers[1].classList.toggle('right-1');
 
     header.querySelector('a').classList.toggle('border-black');
   }

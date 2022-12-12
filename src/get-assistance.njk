@@ -2,6 +2,9 @@
 layout: page.njk
 title: Get assistance
 desc: Afghan Partners in Iowa
+head: >
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 ---
 
 {% import "./_includes/content/forms.njk" as forms %}
@@ -10,26 +13,87 @@ desc: Afghan Partners in Iowa
   {% call forms.form(
     'get-assistance-form',
     'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
-    '{first: "", last: "", email: "", phone: "", street: "", city: "", state: "IA", zip: "", msg: "", errors: false}')
+    '{ first: "", last: "", email: "", phone: "", street: "", city: "", state: "IA", zip: "", msg: "", errors: false, submitCount: 0 }')
   %}
-    {{ forms.field('First (given) name', name='first-name', model='first', labelClass='required') }}
-    {{ forms.error('Please enter your first name', 'errors && first.length === 0') }}
-    {{ forms.field('Last (family) name', name='last-name', model='last', labelClass='required') }}
-    {{ forms.error('Please enter your last name', 'errors && last.length === 0') }}
-    {{ forms.field('Email address', name='email-address', model='email', inputClass='mb-6') }}
-    {{ forms.field('Phone number', name='phone-number', model='phone', placeholder='515-123-1234') }}
-    {{ forms.error('Please provide either your Email Address or Phone Number', 'errors && phone.length === 0 && email.length === 0') }}
-    {{ forms.field('Street Address', name='street-address', model='street', placeholder='123 Main Street', inputClass='mb-6') }}
-    {{ forms.field('City', name='city', model='city', labelClass='required') }}
-    {{ forms.error('City is required', 'errors && city.length === 0') }}
-    {{ forms.field('State', name='state', model='state', value='IA', labelClass='required') }}
-    {{ forms.multiError('State is required', 'errors && state.length === 0', 'At this time, we can only help Afghan Refugees living in Iowa.', 'errors && state.length > 0 && ["IA", "IOWA"].indexOf(state.toUpperCase()) === -1') }}
-    {{ forms.field('Zip (postal) code', name='postal-code', model='zip', inputClass='mb-6') }}
-    {{ forms.field('How can we help?', name='message', model='msg', type='textarea', labelClass='required') }}
-    {{ forms.error('Please provide a message', 'errors && msg.length === 0') }}
+    {{ forms.field(
+        'First (given) name',
+        name='first-name',
+        model='first',
+        labelClass='required',
+        errorText='Please enter your first name'
+    ) }}
+
+    {{ forms.field(
+        'Last (family) name',
+        name='last-name',
+        model='last',
+        labelClass='required',
+        errorText='Please enter your last name'
+    ) }}
+
+    {{ forms.field(
+      'Email address',
+      name='email-address',
+      model='email',
+      validation='phone.length === 0 && email.length === 0',
+      errorText='Please provide either your Email Address or Phone Number'
+    ) }}
+
+    {{ forms.field(
+      'Phone number',
+      name='phone-number',
+      model='phone',
+      placeholder='515-123-1234',
+      validation='phone.length === 0 && email.length === 0',
+      errorText='Please provide either your Email Address or Phone Number'
+    ) }}
+
+    {{ forms.field(
+      'Street Address',
+      name='street-address',
+      model='street',
+      placeholder='123 Main Street',
+      inputClass='mb-6'
+    ) }}
+
+    {{ forms.field(
+      'City',
+      name='city',
+      model='city',
+      placeholder='123 Main Street',
+      labelClass='required',
+      errorText='City is required'
+    ) }}
+
+    {{ forms.field(
+      'State',
+      name='state',
+      model='state',
+      value='IA',
+      labelClass='required',
+      errorText='State is required'
+    ) }}
+
+    {{ forms.field(
+      'Zip (postal) code',
+      name='postal-code',
+      model='zip',
+      inputClass='mb-6'
+    ) }}
+
+    {{ forms.field(
+      'How can we help?',
+      name='message',
+      model='msg',
+      type='textarea',
+      labelClass='required',
+      errorText='Please provide a message'
+    ) }}
+
+    {{ forms.recaptchaDisclaimer() }}
     <button class="submit-form"
             type="button"
-            @click="errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || ['IA', 'IOWA'].indexOf(state.toUpperCase()) === -1  || msg.length === 0); errors ? window.scrollTo(0,0) : submitContactForm()"
+            @click="submitCount += 1; errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || state.length === 0 || msg.length === 0)"
     >Send</button>
   {% endcall %}
 </main>

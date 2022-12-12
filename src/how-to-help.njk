@@ -2,6 +2,9 @@
 layout: page.njk
 title: How to help
 desc: Afghan Partners in Iowa
+head: >
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 ---
 
 {% import "./_includes/content/forms.njk" as forms %}
@@ -10,18 +13,45 @@ desc: Afghan Partners in Iowa
   {% call forms.form(
     'help-form',
     'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Offer%20to%20Help',
-    '{first: "", last: "", email: "", phone: "", errors: false}')
+    '{ first: "", last: "", email: "", phone: "", errors: false, submitCount: 0 }')
   %}
-    {{ forms.field('First (given) name', name='first-name', model='first', labelClass='required') }}
-    {{ forms.error('Please enter your first name', 'errors && first.length === 0') }}
-    {{ forms.field('Last (family) name', name='last-name', model='last', labelClass='required') }}
-    {{ forms.error('Please enter your last name', 'errors && last.length === 0') }}
-    {{ forms.field('Email address', name='email-address', model='email', inputClass='mb-6') }}
-    {{ forms.field('Phone number', name='phone-number', model='phone', placeholder='515-123-1234') }}
-    {{ forms.error('Please provide either your Email Address or Phone Number', 'errors && phone.length === 0 && email.length === 0') }}
+    {{ forms.field(
+        'First (given) name',
+        name='first-name',
+        model='first',
+        labelClass='required',
+        errorText='Please enter your first name'
+    ) }}
+
+    {{ forms.field(
+        'Last (family) name',
+        name='last-name',
+        model='last',
+        labelClass='required',
+        errorText='Please enter your last name'
+    ) }}
+
+    {{ forms.field(
+      'Email address',
+      name='email-address',
+      model='email',
+      validation='phone.length === 0 && email.length === 0',
+      errorText='Please provide either your Email Address or Phone Number'
+    ) }}
+
+    {{ forms.field(
+      'Phone number',
+      name='phone-number',
+      model='phone',
+      placeholder='515-123-1234',
+      validation='phone.length === 0 && email.length === 0',
+      errorText='Please provide either your Email Address or Phone Number'
+    ) }}
+
+    {{ forms.recaptchaDisclaimer() }}
     <button class="submit-form"
             type="button"
-            @click="errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0)); errors ? window.scrollTo(0,0) : submitContactForm();"
+            @click="submitCount += 1; errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0))"
     >Send</button>
   {% endcall %}
 </main>

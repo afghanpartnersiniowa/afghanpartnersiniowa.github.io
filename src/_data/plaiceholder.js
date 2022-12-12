@@ -53,9 +53,9 @@ module.exports = async function () {
         {
           name: "hero",
           path: "/img/hero.jpg",
-          class: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 sm:h-auto h-screen-80",
+          class: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 h-screen-80 w-full",
           alt: "Afghan Partners in Iowa logo",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 w-full sm:h-auto h-screen-80",
+          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 w-full h-screen-80",
         },
       ].map(async (image) => ({
         name: image.name,

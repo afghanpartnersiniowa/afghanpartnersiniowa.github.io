@@ -61,7 +61,7 @@ body {
 }
 
 nav#header {
-  @apply mt-12;
+  @apply mt-12 mb-8;
 }
 
 .isFront nav#header {
@@ -118,12 +118,9 @@ nav#header {
   transform: rotate(-45deg) translateY(0px);
 }
 
-.required:after {
-  content:" *";
-  color: theme('colors.secondary.400');
-}
-
 [x-cloak] { display: none !important; }
+
+.grecaptcha-badge { visibility: hidden; }
 
 /* small and larger */
 @media screen(sm) {
