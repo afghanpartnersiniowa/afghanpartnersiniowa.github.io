@@ -1,6 +1,8 @@
 {% macro form(name, action, xData, method='post') %}
   <form name="{{ name }}" action="{{ action }}" method="{{ method }}" x-data="{{ xData }}">
+    <p x-cloak class="text-secondary-400 mb-6" x-show="errors">Please correct the errors below before submitting</p>
     {{ caller() }}
+    <input class="hidden" name="recaptchaToken" value="">
   </form>
 {% endmacro %}
 
@@ -43,4 +45,19 @@
 
 {% macro multiError(message1, show1, message2, show2, class='mb-2') %}
   <p x-cloak class="text-secondary-400 text-sm {{ class }}" :class="{{ show1 }} || {{ show2 }} || 'invisible'" x-text="({{ show1 }} ? '{{ message1 }}' : '') + ({{ show2 }} ? '{{ message2 }}' : '&nbsp;')"></p>
+{% endmacro %}
+
+{% macro recaptchaScript(siteKey, formName) %}
+  <script src="https://www.google.com/recaptcha/api.js?render={{ siteKey }}" defer></script>
+
+  <script>
+    function submitContactForm() {
+      grecaptcha.ready(function() {
+        grecaptcha.execute('{{ siteKey }}', { action: 'submit' }).then(function(token) {
+          document.querySelector('input[name="recaptchaToken"]').value = token;
+          document.querySelector('form[name="{{ formName }}"]').submit();
+        });
+      });
+    }
+  </script>
 {% endmacro %}
