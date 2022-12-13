@@ -14,11 +14,11 @@ head: >
   'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Offer%20to%20Help',
   '{
     form: {
-      irst:  { value: "", validate: function (form) { return form.first.value.length === 0 } },
-      last:  { value: "", validate: function (form) { return form.last.value.length === 0 } },
-      email:  { value: "", validate: function (form) { return invalidEmail(form.email.value) || phoneAndEmailMissing(form) } },
-      phone:  { value: "", validate: function (form) { return invalidPhone(form.phone.value) || phoneAndEmailMissing(form) } },
-      help:  { value: [], validate: function (form) { return form.help.value.length === 0 } },
+      first:  { value: "", validate: function (form) { return validateNotEmpty(form.first) } },
+      last:   { value: "", validate: function (form) { return validateNotEmpty(form.last) } },
+      email:  { value: "", validate: function (form) { return validEmail(form.email.value) && phoneOrEmailExists(form) } },
+      phone:  { value: "", validate: function (form) { return validPhone(form.phone.value) && phoneOrEmailExists(form) } },
+      help:   { value: [], validate: function (form) { return validateNotEmpty(form.help) } },
       errors: false,
       submitCount: 0
     }
@@ -44,6 +44,7 @@ head: >
     'Email address',
     name='email-address',
     model='form.email',
+    placeholder='name@example.com',
     emptyText='Please provide either your Email address or Phone number',
     invalidText='Please provide a valid Email Address. For example: name@example.com'
   ) }}
@@ -77,7 +78,7 @@ head: >
       'Learning circle'
     ],
     legendClass='required',
-    name='help-with',
+    name='can-help-with',
     model='form.help',
     emptyText='Please select at least one thing to help with'
   ) }}

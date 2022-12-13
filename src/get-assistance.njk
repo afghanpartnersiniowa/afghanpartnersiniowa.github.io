@@ -14,15 +14,15 @@ head: >
   'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
   '{
     form: {
-      first:  { value: "", validate: function (form) { return form.first.value.length === 0 } },
-      last:   { value: "", validate: function (form) { return form.last.value.length === 0 } },
-      email:  { value: "", validate: function (form) { return invalidEmail(form.email.value) || phoneAndEmailMissing(form) } },
-      phone:  { value: "", validate: function (form) { return invalidPhone(form.phone.value) || phoneAndEmailMissing(form) } },
+      first:  { value: "", validate: function (form) { return validateNotEmpty(form.first) } },
+      last:   { value: "", validate: function (form) { return validateNotEmpty(form.last) } },
+      email:  { value: "", validate: function (form) { return validEmail(form.email.value) && phoneOrEmailExists(form) } },
+      phone:  { value: "", validate: function (form) { return validPhone(form.phone.value) && phoneOrEmailExists(form) } },
       street: { value: "" },
-      city:   { value: "", validate: function (form) { return form.city.value === 0 } },
-      state:  { value: "IA", validate: function (form) { return form.state.value === 0 } },
+      city:   { value: "", validate: function (form) { return validateNotEmpty(form.city) } },
+      state:  { value: "IA", validate: function (form) { return validateNotEmpty(form.state) } },
       zip:    { value: "" },
-      help:   { value: [], validate: function (form) { return form.help.value.length === 0 } },
+      help:   { value: [], validate: function (form) { return validateNotEmpty(form.help) } },
       errors: false,
       submitCount: 0
     }
@@ -48,6 +48,7 @@ head: >
     'Email address',
     name='email-address',
     model='form.email',
+    placeholder='name@example.com',
     emptyText='Please provide either your Email address or Phone number',
     invalidText='Please provide a valid Email Address. For example: name@example.com'
   ) }}
@@ -66,7 +67,8 @@ head: >
     name='street-address',
     model='form.street',
     placeholder='123 Main Street',
-    inputClass='mb-6'
+    inputClass='mb-6',
+    validate=false
   ) }}
 
   {{ forms.field(
@@ -89,7 +91,8 @@ head: >
     'Zip (postal) code',
     name='postal-code',
     model='form.zip',
-    inputClass='mb-6'
+    inputClass='mb-6',
+    validate=false
   ) }}
 
   {{ forms.fieldset(
@@ -112,7 +115,7 @@ head: >
       'Learning circle'
     ],
     legendClass='required',
-    name='help-with',
+    name='needs-assistance-with',
     model='form.help',
     emptyText='Please select at least one thing you need assistance with'
   ) }}
