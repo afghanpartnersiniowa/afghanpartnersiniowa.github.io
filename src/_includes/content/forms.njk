@@ -37,7 +37,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro fieldset(legend, items, legendClass='', type='checkbox', name='', model='', errorText='') %}
+{% macro fieldset(legend, items, legendClass='', type='checkbox', name='', model='', emptyText='') %}
   <fieldset class="sm:grid sm:grid-cols-2">
     <legend class="mb-4 {{ legendClass }}">{{ legend }}</legend>
     {% for item in items %}
@@ -49,10 +49,10 @@
       </div>
     {% endfor %}
   </fieldset>
-  {% if errorText %}
+  {% if emptyText %}
     <p class="text-secondary-400 text-sm mb-2 invisible error-label"
-        x-init="{{ errorText.length }} && $watch('form.submitCount', () => {{ model }}.validate(form) ? $el.classList.remove('invisible') : $el.classList.add('invisible'))">
-      {{ errorText }}
+        x-init="{{ emptyText.length }} && $watch('form.submitCount', () => {{ model }}.validate(form) ? $el.classList.remove('invisible') : $el.classList.add('invisible'))">
+      {{ emptyText }}
     </p>
   {% endif %}
 {% endmacro %}
@@ -71,19 +71,23 @@
   rows='4',
   model='',
   labelClass='',
-  errorText=''
+  emptyText='',
+  invalidText=''
 ) %}
   <div>
     {{ label(text, name, labelClass) }}
-    {{ input(name, value, type, placeholder, inputClass, rows, model, errorText.length) }}
-    {% if errorText %}
-      {{ error(errorText) }}
+    {{ input(name, value, type, placeholder, inputClass, rows, model, emptyText.length) }}
+    {% if emptyText %}
+      {{ error(model, emptyText, invalidText) }}
     {% endif %}
   </div>
 {% endmacro %}
 
-{% macro error(message) %}
-  <p class="error-label text-secondary-400 text-sm invisible peer-invalid:visible mb-2">{{ message }}</p>
+{% macro error(model, emptyText, invalidText) %}
+  <p
+    class="error-label text-secondary-400 text-sm invisible peer-invalid:visible mb-2"
+    x-data x-text="{{ model }}.value.length ? '{{ invalidText }}' : '{{ emptyText }}'">
+  </p>
 {% endmacro %}
 
 {% macro recaptchaScript(siteKey, formName) %}

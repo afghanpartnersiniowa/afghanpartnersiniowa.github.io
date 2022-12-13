@@ -14,15 +14,15 @@ head: >
   'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
   '{
     form: {
-      first: { value: "", validate: (form) => form.first.value.length === 0 },
-      last:  { value: "", validate: (form) => form.last.value.length === 0 },
-      email: { value: "", validate: (form) => form.phone.value.length === 0 && form.email.value.length === 0 },
-      phone: { value: "", validate: (form) => form.phone.value === 0 && form.email.value.length === 0 },
+      first:  { value: "", validate: function (form) { return form.first.value.length === 0 } },
+      last:   { value: "", validate: function (form) { return form.last.value.length === 0 } },
+      email:  { value: "", validate: function (form) { return invalidEmail(form.email.value) || phoneAndEmailMissing(form) } },
+      phone:  { value: "", validate: function (form) { return invalidPhone(form.phone.value) || phoneAndEmailMissing(form) } },
       street: { value: "" },
-      city: { value: "", validate: (form) => form.city.value === 0 },
-      state: { value: "", validate: (form) => form.state.value === 0 },
-      zip: { value: "" },
-      help:  { value: [], validate: (form) => form.help.value.length === 0 },
+      city:   { value: "", validate: function (form) { return form.city.value === 0 } },
+      state:  { value: "IA", validate: function (form) { return form.state.value === 0 } },
+      zip:    { value: "" },
+      help:   { value: [], validate: function (form) { return form.help.value.length === 0 } },
       errors: false,
       submitCount: 0
     }
@@ -33,7 +33,7 @@ head: >
     name='first-name',
     model='form.first',
     labelClass='required',
-    errorText='Please enter your first name'
+    emptyText='Please enter your first name'
   ) }}
 
   {{ forms.field(
@@ -41,14 +41,15 @@ head: >
     name='last-name',
     model='form.last',
     labelClass='required',
-    errorText='Please enter your last name'
+    emptyText='Please enter your last name'
   ) }}
 
   {{ forms.field(
     'Email address',
     name='email-address',
     model='form.email',
-    errorText='Please provide either your Email Address or Phone Number'
+    emptyText='Please provide either your Email address or Phone number',
+    invalidText='Please provide a valid Email Address. For example: name@example.com'
   ) }}
 
   {{ forms.field(
@@ -56,7 +57,8 @@ head: >
     name='phone-number',
     model='form.phone',
     placeholder='515-123-1234',
-    errorText='Please provide either your Email Address or Phone Number'
+    emptyText='Please provide either your Email address or Phone number',
+    invalidText='Please provide a valid Phone Number. For example: 515-111-2222'
   ) }}
 
     {{ forms.field(
@@ -71,18 +73,16 @@ head: >
     'City',
     name='city',
     model='form.city',
-    placeholder='123 Main Street',
     labelClass='required',
-    errorText='City is required'
+    emptyText='City is required'
   ) }}
 
   {{ forms.field(
     'State',
     name='state',
     model='form.state',
-    value='IA',
     labelClass='required',
-    errorText='State is required'
+    emptyText='State is required'
   ) }}
 
   {{ forms.field(
@@ -114,7 +114,7 @@ head: >
     legendClass='required',
     name='help-with',
     model='form.help',
-    errorText='Please select at least one thing you need assistance with'
+    emptyText='Please select at least one thing you need assistance with'
   ) }}
 
   {{ forms.recaptchaDisclaimer() }}

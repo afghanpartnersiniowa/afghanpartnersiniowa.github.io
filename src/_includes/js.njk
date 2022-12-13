@@ -25,4 +25,16 @@
 
     header.querySelector('a').classList.toggle('border-black');
   }
+
+  window.invalidEmail = function (email) {
+    return Boolean(email) && !/^\S+@\S+\.[a-zA-Z]{2,6}$/.test(email);
+  }
+
+  window.invalidPhone = function (phone) {
+    return Boolean(phone) && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(phone);
+  }
+
+  window.phoneAndEmailMissing = function (form) {
+    return !form.email.value.length && !form.phone.value.length;
+  }
 </script>
