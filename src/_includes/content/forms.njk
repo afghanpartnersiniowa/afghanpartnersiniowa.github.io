@@ -1,9 +1,13 @@
 {% macro form(name, action, xData, method='post') %}
-  <form name="{{ name }}" action="{{ action }}" method="{{ method }}" x-data="{{ xData }}" x-init="$watch('submitCount', () => errors ? window.scrollTo(0,0) : submitContactForm())">
-    <p x-cloak class="text-secondary-400 mb-6" x-show="errors">Please correct the errors below before submitting</p>
+  <form name="{{ name }}"
+        action="{{ action }}"
+        method="{{ method }}"
+        x-data="{{ xData }}"
+        x-init="$watch('form.submitCount', () => { form.errors = Object.keys(form).some(k => Boolean(form[k].validate) && form[k].validate(form)); form.errors ? window.scrollTo(0,0) : submitContactForm() })">
+    <p x-cloak class="text-secondary-400 mb-6" x-show="form.errors">Please correct the errors below before submitting</p>
     <p class="required mb-4">Required</p>
-    {{ caller() }}
     <input class="hidden" name="recaptchaToken" value="">
+    {{ caller() }}
   </form>
 {% endmacro %}
 
@@ -13,23 +17,43 @@
   >{{ text }}</button>
 {% endmacro %}
 
-{% macro input(name, value='', type='text', placeholder='', class='', rows='4', model='', validate=false, validation=false) %}
+{% macro input(name, value='', type='text', placeholder='', class='', rows='4', model='', validate=false, id='') %}
   {% if type === 'textarea' %}
-    <textarea name="{{ name }}" id="{{ name }}"
+    <textarea name="{{ name }}" :id="'{{ id }}' || '{{ name }}'"
               value="{{ value | escape }}"
               class="peer block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
               placeholder="{{ placeholder }}"
               rows="{{ rows }}"
-              x-model="{{ model }}"
-              x-init="$watch('submitCount', () => $el.setCustomValidity(errors && {{ validation }} ? 'Invalid field.' : ''))">
+              x-model="{{ model }}.value"
+              x-init="$watch('form.submitCount', () => $el.setCustomValidity({{ model }}.validate(form) ? 'Invalid field.' : ''))">
     ></textarea>
-  {% else %}
-    <input type="{{ type }}" name="{{ name }}" id="{{ name }}"
+  {% else %}  
+    <input type="{{ type }}" name="{{ name }}" :id="'{{ id }}' || '{{ name }}'"
            value="{{ value | escape }}"
            class="peer block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 sm:text-sm {{ class }}"
            placeholder="{{ placeholder }}"
-           x-model="{{ model }}"
-           x-init="{{ validate }} && $watch('submitCount', () => $el.setCustomValidity(errors && ({{ validation }} ? {{ validation }} : {{ model }}.length === 0) ? 'Invalid field.' : ''))">
+           x-model="{{ model }}.value"
+           x-init="{{ validate }} && $watch('form.submitCount', () => $el.setCustomValidity({{ model }}.validate(form) ? 'Invalid field.' : ''))">
+  {% endif %}
+{% endmacro %}
+
+{% macro fieldset(legend, items, legendClass='', type='checkbox', name='', model='', errorText='') %}
+  <fieldset class="sm:grid sm:grid-cols-2">
+    <legend class="mb-4 {{ legendClass }}">{{ legend }}</legend>
+    {% for item in items %}
+      <div class="mb-2">
+        <input type="{{ type }}" value="{{ item }}" name="{{ name }}" id="{{ name }}_{{ loop.index }}"
+               class="border-gray-300 focus:ring-3 focus:ring-primary-300 rounded mr-2"
+               x-model="{{ model }}.value">
+        <label for="{{ name }}_{{ loop.index }}">{{ item }}</label>
+      </div>
+    {% endfor %}
+  </fieldset>
+  {% if errorText %}
+    <p class="text-secondary-400 text-sm mb-2 invisible error-label"
+        x-init="{{ errorText.length }} && $watch('form.submitCount', () => {{ model }}.validate(form) ? $el.classList.remove('invisible') : $el.classList.add('invisible'))">
+      {{ errorText }}
+    </p>
   {% endif %}
 {% endmacro %}
 
@@ -47,12 +71,11 @@
   rows='4',
   model='',
   labelClass='',
-  validation=false,
   errorText=''
 ) %}
   <div>
     {{ label(text, name, labelClass) }}
-    {{ input(name, value, type, placeholder, inputClass, rows, model, errorText.length, validation) }}
+    {{ input(name, value, type, placeholder, inputClass, rows, model, errorText.length) }}
     {% if errorText %}
       {{ error(errorText) }}
     {% endif %}
@@ -60,7 +83,7 @@
 {% endmacro %}
 
 {% macro error(message) %}
-  <p class="text-secondary-400 text-sm invisible peer-invalid:visible mb-2">{{ message }}</p>
+  <p class="error-label text-secondary-400 text-sm invisible peer-invalid:visible mb-2">{{ message }}</p>
 {% endmacro %}
 
 {% macro recaptchaScript(siteKey, formName) %}

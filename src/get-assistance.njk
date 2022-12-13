@@ -9,93 +9,119 @@ head: >
 
 {% import "./_includes/content/forms.njk" as forms %}
 
-<main id="main-content" class="bg-white">
-  {% call forms.form(
-    'get-assistance-form',
-    'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
-    '{ first: "", last: "", email: "", phone: "", street: "", city: "", state: "IA", zip: "", msg: "", errors: false, submitCount: 0 }')
-  %}
-    {{ forms.field(
-        'First (given) name',
-        name='first-name',
-        model='first',
-        labelClass='required',
-        errorText='Please enter your first name'
-    ) }}
+{% call forms.form(
+  'get-assistance-form',
+  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
+  '{
+    form: {
+      first: { value: "", validate: (form) => form.first.value.length === 0 },
+      last:  { value: "", validate: (form) => form.last.value.length === 0 },
+      email: { value: "", validate: (form) => form.phone.value.length === 0 && form.email.value.length === 0 },
+      phone: { value: "", validate: (form) => form.phone.value === 0 && form.email.value.length === 0 },
+      street: { value: "" },
+      city: { value: "", validate: (form) => form.city.value === 0 },
+      state: { value: "", validate: (form) => form.state.value === 0 },
+      zip: { value: "" },
+      help:  { value: [], validate: (form) => form.help.value.length === 0 },
+      errors: false,
+      submitCount: 0
+    }
+  }'
+) %}
+  {{ forms.field(
+    'First (given) name',
+    name='first-name',
+    model='form.first',
+    labelClass='required',
+    errorText='Please enter your first name'
+  ) }}
+
+  {{ forms.field(
+    'Last (family) name',
+    name='last-name',
+    model='form.last',
+    labelClass='required',
+    errorText='Please enter your last name'
+  ) }}
+
+  {{ forms.field(
+    'Email address',
+    name='email-address',
+    model='form.email',
+    errorText='Please provide either your Email Address or Phone Number'
+  ) }}
+
+  {{ forms.field(
+    'Phone number',
+    name='phone-number',
+    model='form.phone',
+    placeholder='515-123-1234',
+    errorText='Please provide either your Email Address or Phone Number'
+  ) }}
 
     {{ forms.field(
-        'Last (family) name',
-        name='last-name',
-        model='last',
-        labelClass='required',
-        errorText='Please enter your last name'
-    ) }}
+    'Street Address',
+    name='street-address',
+    model='form.street',
+    placeholder='123 Main Street',
+    inputClass='mb-6'
+  ) }}
 
-    {{ forms.field(
-      'Email address',
-      name='email-address',
-      model='email',
-      validation='phone.length === 0 && email.length === 0',
-      errorText='Please provide either your Email Address or Phone Number'
-    ) }}
+  {{ forms.field(
+    'City',
+    name='city',
+    model='form.city',
+    placeholder='123 Main Street',
+    labelClass='required',
+    errorText='City is required'
+  ) }}
 
-    {{ forms.field(
-      'Phone number',
-      name='phone-number',
-      model='phone',
-      placeholder='515-123-1234',
-      validation='phone.length === 0 && email.length === 0',
-      errorText='Please provide either your Email Address or Phone Number'
-    ) }}
+  {{ forms.field(
+    'State',
+    name='state',
+    model='form.state',
+    value='IA',
+    labelClass='required',
+    errorText='State is required'
+  ) }}
 
-    {{ forms.field(
-      'Street Address',
-      name='street-address',
-      model='street',
-      placeholder='123 Main Street',
-      inputClass='mb-6'
-    ) }}
+  {{ forms.field(
+    'Zip (postal) code',
+    name='postal-code',
+    model='form.zip',
+    inputClass='mb-6'
+  ) }}
 
-    {{ forms.field(
-      'City',
-      name='city',
-      model='city',
-      placeholder='123 Main Street',
-      labelClass='required',
-      errorText='City is required'
-    ) }}
+  {{ forms.fieldset(
+    'What do you need assistance with?',
+    [
+      'Interpretation',
+      'Employment',
+      'School/ESL',
+      'Healthcare',
+      'Housing',
+      'Car insurance',
+      'Immigration issues',
+      'Applications',
+      'Safety issues',
+      'Transportation',
+      'Childcare',
+      'Reading and responding to mail',
+      'Banking and finance',
+      'Taxes/IRS',
+      'Learning circle'
+    ],
+    legendClass='required',
+    name='help-with',
+    model='form.help',
+    errorText='Please select at least one thing you need assistance with'
+  ) }}
 
-    {{ forms.field(
-      'State',
-      name='state',
-      model='state',
-      value='IA',
-      labelClass='required',
-      errorText='State is required'
-    ) }}
-
-    {{ forms.field(
-      'Zip (postal) code',
-      name='postal-code',
-      model='zip',
-      inputClass='mb-6'
-    ) }}
-
-    {{ forms.field(
-      'How can we help?',
-      name='message',
-      model='msg',
-      type='textarea',
-      labelClass='required',
-      errorText='Please provide a message'
-    ) }}
-
-    {{ forms.recaptchaDisclaimer() }}
-    <button class="submit-form"
-            type="button"
-            @click="submitCount += 1; errors = (first.length === 0 || last.length === 0 || (email.length === 0 && phone.length === 0) || city.length === 0 || state.length === 0 || msg.length === 0)"
-    >Send</button>
-  {% endcall %}
-</main>
+  {{ forms.recaptchaDisclaimer() }}
+  <button class="submit-form"
+          type="button"
+          @click="form.submitCount += 1"
+  >Send</button>
+{% endcall %}
 
 {{ forms.recaptchaScript(env.recaptchaSiteKey, 'get-assistance-form') }}
