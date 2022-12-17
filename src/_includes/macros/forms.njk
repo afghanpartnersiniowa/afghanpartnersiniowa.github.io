@@ -1,5 +1,6 @@
 {% macro form(name, action, xData, method='post') %}
   <form name="{{ name }}"
+        id="form"
         action="{{ action }}"
         method="{{ method }}"
         x-data="{{ xData }}"
@@ -31,7 +32,7 @@
               x-model.lazy="{{ model }}.value"
               x-init="{{ init(model, validate, '$el.setCustomValidity(``)', '$el.setCustomValidity(`Invalid field`)') }}">
     ></textarea>
-  {% else %}  
+  {% else %}
     <input type="{{ type }}"
            name="{{ name }}"
            id="{{ name }}"
@@ -58,7 +59,7 @@
   {% if validate %}
     <p class="text-secondary-400 text-sm mb-2 invisible error-label"
         x-init="{{ init(model, validate, '$el.classList.add(`invisible`)', '$el.classList.remove(`invisible`)') }}">
-      {{ emptyText }}
+      {{ emptyText or "&nbsp;" | safe }}
     </p>
   {% endif %}
 {% endmacro %}
@@ -94,6 +95,7 @@
   <p
     class="error-label text-secondary-400 text-sm invisible peer-invalid:visible mb-2"
     x-data x-text="{{ model }}.value.length ? '{{ invalidText | safe }}' : '{{ emptyText | safe }}'">
+    &nbsp;
   </p>
 {% endmacro %}
 
@@ -115,7 +117,7 @@
 {% macro recaptchaDisclaimer() %}
   <p class="text-sm font-light mb-4">
     This site is protected by reCAPTCHA and the Google
-    <a href="https://policies.google.com/privacy" class="external">Privacy Policy</a> and
-    <a href="https://policies.google.com/terms" class="external">Terms of Service</a> apply.
+    <a href="https://policies.google.com/privacy" class="anchor">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms" class="anchor">Terms of Service</a> apply.
   </p>
 {% endmacro %}

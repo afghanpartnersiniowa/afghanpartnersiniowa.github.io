@@ -1,27 +1,14 @@
----
-layout: page.njk
-title: Get assistance
-desc: Afghan Partners in Iowa
-head: >
-  <link rel="preconnect" href="https://www.google.com">
-  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
----
-
-{% import "./_includes/content/forms.njk" as forms %}
+{% import "../macros/forms.njk" as forms %}
 
 {% call forms.form(
-  'get-assistance-form',
-  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20for%20Assistance',
+  'help-form',
+  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Offer%20to%20Help',
   '{
     form: {
       first:  { value: "", validate: function (form) { return validateNotEmpty(form.first) } },
       last:   { value: "", validate: function (form) { return validateNotEmpty(form.last) } },
       email:  { value: "", validate: function (form) { return validEmail(form.email.value) && phoneOrEmailExists(form) } },
       phone:  { value: "", validate: function (form) { return validPhone(form.phone.value) && phoneOrEmailExists(form) } },
-      street: { value: "" },
-      city:   { value: "", validate: function (form) { return validateNotEmpty(form.city) } },
-      state:  { value: "IA", validate: function (form) { return validateNotEmpty(form.state) } },
-      zip:    { value: "" },
       help:   { value: [], validate: function (form) { return validateNotEmpty(form.help) } },
       errors: false,
       submitCount: 0
@@ -44,7 +31,7 @@ head: >
     emptyText='Please enter your last name'
   ) }}
 
-  {{ forms.field(
+{{ forms.field(
     'Email address',
     name='email-address',
     model='form.email',
@@ -62,41 +49,8 @@ head: >
     invalidText='Please provide a valid Phone Number. For example: 515-111-2222'
   ) }}
 
-    {{ forms.field(
-    'Street Address',
-    name='street-address',
-    model='form.street',
-    placeholder='123 Main Street',
-    inputClass='mb-6',
-    validate=false
-  ) }}
-
-  {{ forms.field(
-    'City',
-    name='city',
-    model='form.city',
-    labelClass='required',
-    emptyText='City is required'
-  ) }}
-
-  {{ forms.field(
-    'State',
-    name='state',
-    model='form.state',
-    labelClass='required',
-    emptyText='State is required'
-  ) }}
-
-  {{ forms.field(
-    'Zip (postal) code',
-    name='postal-code',
-    model='form.zip',
-    inputClass='mb-6',
-    validate=false
-  ) }}
-
   {{ forms.fieldset(
-    'What do you need assistance with?',
+    'What would you like to help with?',
     [
       'Interpretation',
       'Employment',
@@ -115,9 +69,9 @@ head: >
       'Learning circle'
     ],
     legendClass='required',
-    name='needs-assistance-with',
+    name='can-help-with',
     model='form.help',
-    emptyText='Please select at least one thing you need assistance with'
+    emptyText='Please select at least one thing to help with'
   ) }}
 
   {{ forms.recaptchaDisclaimer() }}
@@ -127,4 +81,4 @@ head: >
   >Send</button>
 {% endcall %}
 
-{{ forms.recaptchaScript(env.recaptchaSiteKey, 'get-assistance-form') }}
+{{ forms.recaptchaScript(env.recaptchaSiteKey, 'help-form') }}

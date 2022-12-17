@@ -2,29 +2,71 @@
 layout: base.njk
 isFront: true
 title: Home
+mainClass: bg-primary
 ---
 <header class="sm:min-h-screen isFront">
   <div>
     {{ plaiceholder.hero | safe }}
   </div>
   {% include "navbar.njk" %}
-  <div class="flex flex-col justify-center h-full mt-16">
+  <div class="flex flex-col justify-center h-full mt-16 mb-8">
     <div class="flex flex-col items-center self-center w-full px-4 sm:flex-row md:w-5/6 xl:w-2/3 sm:px-0 bg-transparent">
-      <div class="w-full pt-10 pb-12 px-4 sm:px-0 text-center sm:px-8 bg-primary/80 text-white">
+      <div class="w-full pt-10 pb-12 px-4 sm:px-0 text-center sm:px-8 bg-secondary-600/90 text-white">
         <h1 class="mb-6 font-bold tracking-wide marker:text-2xl sm:text-4xl">Afghan Partners in Iowa</h1>
         <p class="text-lg font-bold">{{ site.description }}</p>
       </div>
     </div>
   </div>
-  {# <div class="flex flex-row justify-center w-full pb-10">
-    <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-customRed bg-opacity-80 hover:bg-opacity-50 hover:no-underline"
-       href="#about">More Information</a>
-  </div> #}
 </header>
-<main id="main-content" class="bg-white">
-  <div id="about" class="flex flex-col items-center justify-center w-full min-h-screen">
-    <div class="self-center w-full px-4 pt-5 text-center sm:w-3/4 sm:px:0">
-      {% renderFile "./src/_includes/content/about.md" %}
+<main id="main-content" class="bg-black flex flex-col items-center justify-center text-white">
+  <div class="bg-black w-full px-4 pt-20 pb-10">
+    <div class="w-full text-center md:w-11/12 m-auto">
+      <div class="md:grid md:grid-cols-2 mb-8">
+        <div class="relative w-3/4 md:w-full m-auto">
+          {{ plaiceholder.afghansHelpingAfghans | safe }}
+        </div>
+        <div class="text-lg w-5/6 m-auto">
+          <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">About us</h2>
+          {% renderFile "./src/_includes/content/about.njk" %}
+          <div class="my-8">
+           <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-500/80 hover:bg-gray-500 hover:no-underline"
+              href="/about-us">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-primary-600 w-full px-4 pt-10 pb-10">
+    <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">What we do</h2>
+    <div class="w-full text-center md:w-11/12 m-auto md:grid md:grid-cols-2 md:gap-8">
+      <div class="bg-primary-800 py-4 md:py-0 my-4 md:my-0">
+        <h3 class="text-2xl text-center font-bold mb-12">Provide aid</h3>
+        <p></p>
+        <div class="relative w-full md:w-3/4 md:m-auto">
+          {{ plaiceholder.immigrants | safe }}
+        </div>
+        <div class="my-8">
+          <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-500/80 hover:bg-gray-500 hover:no-underline"
+             href="/request-aid">Request aid</a>
+        </div>
+      </div>
+      <div class="bg-primary-800 py-4 md:py-0 my-4 md:my-0">
+        <h3 class="text-2xl text-center font-bold mb-12">Serve</h3>
+        <p></p>
+        <div class="relative w-full md:w-3/4 md:m-auto">
+          {{ plaiceholder.volunteer | safe }}
+        </div>
+        <div class="my-8">
+          <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-500/80 hover:bg-gray-500 hover:no-underline"
+             href="/how-to-help">Volunteer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-black text-gray-300 w-full sm:2/3 md:w-1/2 md:m-auto px-4 pt-5">
+    <h2 class="text-4xl text-center mb-12">Have questions? Contact us</h2>
+    <div class="mb-8">
+      {% renderFile "./src/_includes/content/contact-us-form.njk" %}
     </div>
   </div>
 </main>

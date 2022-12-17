@@ -1,0 +1,121 @@
+{% import "../macros/forms.njk" as forms %}
+
+{% call forms.form(
+  'request-aid-form',
+  'https://d22ee0itwuuo5o.cloudfront.net/contact?form=Afghan%20Partners%20in%20Iowa%20-%20Request%20Aid',
+  '{
+    form: {
+      first:  { value: "", validate: function (form) { return validateNotEmpty(form.first) } },
+      last:   { value: "", validate: function (form) { return validateNotEmpty(form.last) } },
+      email:  { value: "", validate: function (form) { return validEmail(form.email.value) && phoneOrEmailExists(form) } },
+      phone:  { value: "", validate: function (form) { return validPhone(form.phone.value) && phoneOrEmailExists(form) } },
+      street: { value: "" },
+      city:   { value: "", validate: function (form) { return validateNotEmpty(form.city) } },
+      state:  { value: "IA", validate: function (form) { return validateNotEmpty(form.state) } },
+      zip:    { value: "" },
+      help:   { value: [], validate: function (form) { return validateNotEmpty(form.help) } },
+      errors: false,
+      submitCount: 0
+    }
+  }'
+) %}
+  {{ forms.field(
+    'First (given) name',
+    name='first-name',
+    model='form.first',
+    labelClass='required',
+    emptyText='Please enter your first name'
+  ) }}
+
+  {{ forms.field(
+    'Last (family) name',
+    name='last-name',
+    model='form.last',
+    labelClass='required',
+    emptyText='Please enter your last name'
+  ) }}
+
+  {{ forms.field(
+    'Email address',
+    name='email-address',
+    model='form.email',
+    placeholder='name@example.com',
+    emptyText='Please provide either your Email address or Phone number',
+    invalidText='Please provide a valid Email Address. For example: name@example.com'
+  ) }}
+
+  {{ forms.field(
+    'Phone number',
+    name='phone-number',
+    model='form.phone',
+    placeholder='515-123-1234',
+    emptyText='Please provide either your Email address or Phone number',
+    invalidText='Please provide a valid Phone Number. For example: 515-111-2222'
+  ) }}
+
+    {{ forms.field(
+    'Street Address',
+    name='street-address',
+    model='form.street',
+    placeholder='123 Main Street',
+    inputClass='mb-6',
+    validate=false
+  ) }}
+
+  {{ forms.field(
+    'City',
+    name='city',
+    model='form.city',
+    labelClass='required',
+    emptyText='City is required'
+  ) }}
+
+  {{ forms.field(
+    'State',
+    name='state',
+    model='form.state',
+    labelClass='required',
+    emptyText='State is required'
+  ) }}
+
+  {{ forms.field(
+    'Zip (postal) code',
+    name='postal-code',
+    model='form.zip',
+    inputClass='mb-6',
+    validate=false
+  ) }}
+
+  {{ forms.fieldset(
+    'What do you need assistance with?',
+    [
+      'Interpretation',
+      'Employment',
+      'School/ESL',
+      'Healthcare',
+      'Housing',
+      'Car insurance',
+      'Immigration issues',
+      'Applications',
+      'Safety issues',
+      'Transportation',
+      'Childcare',
+      'Reading and responding to mail',
+      'Banking and finance',
+      'Taxes/IRS',
+      'Learning circle'
+    ],
+    legendClass='required',
+    name='needs-assistance-with',
+    model='form.help',
+    emptyText='Please select at least one thing you need assistance with'
+  ) }}
+
+  {{ forms.recaptchaDisclaimer() }}
+  <button class="submit-form"
+          type="button"
+          @click="form.submitCount += 1"
+  >Send</button>
+{% endcall %}
+
+{{ forms.recaptchaScript(env.recaptchaSiteKey, 'request-aid-form') }}
