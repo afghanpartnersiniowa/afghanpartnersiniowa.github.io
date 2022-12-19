@@ -4,7 +4,6 @@ const markdownIt = require("markdown-it");
 const markdownItAttrs = require('markdown-it-attrs');
 const markdownItEmoji = require("markdown-it-emoji");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-const faviconPlugin = require("eleventy-favicon");
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 
 const removeTrailingSlash = (url) => {
@@ -16,7 +15,6 @@ const removeTrailingSlash = (url) => {
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(faviconPlugin, { destination: './public' });
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   eleventyConfig.addFilter('removeTrailingSlash', removeTrailingSlash);

@@ -1,12 +1,12 @@
 ---
 layout: base.njk
 ---
-<header>
+<header class="{{ headerClass or '' }}">
   {% include "navbar.njk" %}
 </header>
 <main id="main-content" class="flex flex-col items-center justify-center w-full {{ mainClass or 'bg-white' }}">
   <div class="self-center w-full px-4 pt-8 sm:w-2/3 xl:w-1/2 sm:px:0">
-    <h1 class="text-center tracking-widest text-gray-800 uppercase">{{ title }}</h1>
+    <h1 class="text-center tracking-widest uppercase {{ h1Class or 'text-gray-800' }}">{{ title }}</h1>
     <div class="text-lg font-light text-black">
       {{ content | safe }}
     </div>

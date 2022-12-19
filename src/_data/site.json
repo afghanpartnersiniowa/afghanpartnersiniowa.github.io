@@ -2,7 +2,8 @@
   "title": "Afghan Partners in Iowa",
   "description": "Helping Afghans who are victims of terrorism",
   "author": "Afghan Partners in Iowa",
-  "image": "/img/logo.png",
+  "favicon": "/img/logo.png",
+  "image": "/img/logo-title.png",
   "language": "en",
   "social": []
 }

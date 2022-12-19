@@ -86,11 +86,11 @@ module.exports = async function () {
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
-          name: "refugees-truck",
+          name: "refugeesTruck",
           path: "/img/afghanistan-refugees-truck.jpeg",
-          class: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 h-screen-80 w-full",
+          class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
           alt: "Afghan refugees in trucks",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none sm:max-h-screen-80 w-full h-screen-80",
+          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
       ].map(async (image) => ({
         name: image.name,
