@@ -2,12 +2,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preload" href="/css/page.css" as="style">
+<link rel="preload" href="/font/SourceSerifPro-Bold.woff2" as="font" crossorigin>
+<link rel="preload" href="/font/SourceSansPro-Regular.woff2" as="font" crossorigin>
+<link rel="preload" href="/font/SourceSansPro-Bold.woff2" as="font" crossorigin>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>{{ pageTitle or title }} - {{ site.title }}</title>
 <meta name="description" content="{{ description or site.description }}">
 <meta name="author" content="{{ site.author }}">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="{{ 'noindex' if env.isPreview else 'index,follow' }}">
 <!-- Social Metadata -->
+<meta property="og:locale" content="{{ site.language }}">
 <meta property="og:site_name" content="{{ site.author }}">
 <meta property="og:title" content="{{ title or site.title }} - {{ site.title }}">
 <meta property="og:description" content="{{ description or site.description }}">

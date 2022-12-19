@@ -6,16 +6,15 @@ const devUrl = "http://localhost:8080";
 const previewUrl = "https://preview.afghanpartnersiniowa.org";
 const prodUrl = "https://www.afghanpartnersiniowa.org";
 
+const isPreview = nodeEnv === PREVIEW_ENV;
 let isProd = false;
-let isPreview = false;
 let url;
 
 if (environment === DEV_ENV) {
   url = devUrl;
-} else if (nodeEnv === PREVIEW_ENV) {
+} else if (isPreview) {
   url = previewUrl;
   isProd = true;
-  isPreview = true;
 } else {
   url = prodUrl;
   isProd = true;
