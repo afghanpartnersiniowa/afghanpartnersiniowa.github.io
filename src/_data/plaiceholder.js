@@ -9,16 +9,21 @@ async function imageShortcode(src, cls, alt, sizes) {
   let metadata = await Image(transformedSrc, {
     widths: [600, 900, 1500],
     formats: ["webp"],
-    outputDir: "./public/img/",
+    outputDir: process.env.NODE_ENV === 'preview' ? "./preview/img/" : "./public/img/",
   });
 
-  let imageAttributes = {
+  const imageAttributes = {
     class: cls,
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
   };
+
+  if (!alt) {
+    imageAttributes.alt = "";
+    imageAttributes.role = "presentation";
+  }
 
   return Image.generateHTML(metadata, imageAttributes);
 }
@@ -30,9 +35,11 @@ async function imageWithPlaiceholderBase64(src, cls, alt, sizes, plaiceholderCla
   const image = await imageShortcode(src, cls, alt, sizes);
   const { base64 } = await getPlaiceholder(src, { dir: "./src/static" });
 
+  const attrs = alt ? `alt="${alt}"` : `role="presentation"`;
+
   return `
     <img
-      alt="${alt}"
+      ${attrs}
       src="${base64}"
       class="${plaiceholderClass || defaultClass}"
     />
@@ -54,7 +61,6 @@ module.exports = async function () {
           name: "hero",
           path: "/img/children-war.webp",
           class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          alt: "Afghan children",
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
@@ -82,21 +88,18 @@ module.exports = async function () {
           name: "flags",
           path: "/img/afghanistan-american-flags.webp",
           class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          alt: "Afghanistan and American flags",
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
           name: "refugeesTruck",
           path: "/img/afghanistan-refugees-truck.jpeg",
           class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          alt: "Afghan refugees in trucks",
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
           name: "kabul",
           path: "/img/kabul.webp",
           class: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
-          alt: "An aerial photograph of Kabul, Afghanistan.",
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
         },
         {

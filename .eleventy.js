@@ -71,7 +71,7 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: 'src',
-      output: 'public',
+      output: process.env.NODE_ENV === 'preview' ? 'preview' : 'public',
       data: './_data',
       includes: './_includes',
       layouts: './_layouts'

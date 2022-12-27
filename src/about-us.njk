@@ -4,6 +4,8 @@ title: About us
 desc: Afghan Partners in Iowa
 ---
 
+{% import "./_includes/macros/profile.njk" as profile %}
+
 <header class="min-h-screen-60">
   <div>
     {{ plaiceholder.kabul | safe }}
@@ -19,7 +21,57 @@ desc: Afghan Partners in Iowa
       </div>
       <div class="bg-black py-8 px-8 lg:px-0">
         <h2 class="text-center text-white">Our Team</h2>
-        {% renderFile "./src/_includes/content/about-profiles.njk" %}
+        <div class="md:grid md:grid-cols-2 md:gap-16 my-16 m-auto w-full sm:w-5/6 lg:w-3/4 xl:w-2/3">
+          {% call profile.card('Shir Agha Safi', 'Executive Director since 2022',
+            'A former Afghanistan Military Commander, Safi served for over a decade until the fall of 2021 when he left Afghanistan after the US troops left. Safi decided to start Afghan Partners in Iowa when he realized that Afghan refugees arriving in Iowa need help to start their new lives here in the US.'
+          ) %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Fazal Moneer', 'Coordinator of Health, Housing and Employment since 2022', 'Fazal Moneer aids Afghan refugees with medical and health matters. Fazal also helps Afghan refugees find housing and jobs.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Soniya Mohammadi', 'Coordinator of Education, Employment, Healthcare, and Childcare for Afghan Women since 2022', 'Soniya Mohammadi aids Afghan women with medical, health, and education matters. Soniya also helps Afghan women find childcare and jobs.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Madina Nazari', 'Coordinator of Employment for Afghan Women since 2022', 'Soniya helps Afghan women find jobs and with other employment related matters.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Sweeta Noori', 'Coordinator of Kids Health since 2022', 'Sweeta Noori aids with medical and health matters for Afghan children.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Nabi Mohammadi', 'Coordinator of Driving and Education since 2022', 'Nabi Mohammadi helps Afghan refugees with driving licenses and education.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Abdul Hmid Yaqoobi', 'Logistics Officer since 2022', 'Abdul Hmid Yaqoobi has been the Logistics Officer for Afghan Partners in Iowa since 2022.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Feroz Rashidzai', 'Driving License Aid since 2022', 'Feroz Rashidzai works with Afghan refugees to help them get their driver\'s license.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Ali Nazari', 'Member of Board of Directors since 2022', 'Ali Nazari has been a Board Member of the Board of Directors for Afghan Partners in Iowa since 2022.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Shafiqullah Noori', 'Coordinator for Ankeny since 2022', 'Shafiqullah Noori assists Afghan refugees living in Johnston, Iowa.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Khairullah Khairkhwa', 'Coordinator for Johnston since 2022', 'Khairullah Khairkhwa assists Afghan refugees living in Johnston, Iowa.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+
+          {% call profile.card('Ashabudin Mokhles', 'Coordinator for Iowa City since 2022', 'Ashabudin Mokhles assists Afghan refugees living in Iowa City, Iowa.') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+        </div>
       </div>
     </div>
   </div>
