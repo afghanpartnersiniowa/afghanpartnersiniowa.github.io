@@ -1,0 +1,38 @@
+/* every third */
+.profile-card:nth-of-type(3n-2) {
+  background-color: theme('colors.primary.lightest');
+}
+
+.profile-card:nth-of-type(3n-2) h3 {
+  color: theme('colors.primary.DEFAULT');
+}
+
+.profile-card:nth-of-type(3n-2) .borderline {
+  border-color: theme('colors.primary.DEFAULT');
+}
+
+/* every third + 1 */
+.profile-card:nth-of-type(3n-1) {
+  background-color: theme('colors.secondary.lightest');
+}
+
+.profile-card:nth-of-type(3n-1) h3 {
+  color: theme('colors.secondary.DEFAULT');
+}
+
+.profile-card:nth-of-type(3n-1) .borderline {
+  border-color: theme('colors.secondary.DEFAULT');
+}
+
+/* every third + 2 */
+.profile-card:nth-of-type(3n) {
+  background-color: theme('colors.gray.100');
+}
+
+.profile-card:nth-of-type(3n) h3 {
+  color: theme('colors.black');
+}
+
+.profile-card:nth-of-type(3n) .borderline {
+  border-color: theme('colors.black');
+}

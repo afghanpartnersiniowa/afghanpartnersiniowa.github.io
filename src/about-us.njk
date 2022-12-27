@@ -1,9 +1,26 @@
 ---
-layout: page.njk
+layout: base.njk
 title: About us
 desc: Afghan Partners in Iowa
 ---
 
-<div class="min-h-screen">
-  <p>Coming soon!</p>
-</div>
+<header class="min-h-screen-60">
+  <div>
+    {{ plaiceholder.kabul | safe }}
+  </div>
+  {% include "navbar.njk" %}
+</header>
+<main id="main-content" class="flex flex-col items-center justify-center w-full {{ mainClass or 'bg-white' }}">
+  <div class="self-center w-full pt-8">
+    <h1 class="text-center tracking-widest uppercase text-gray-800">{{ title }}</h1>
+    <div class="mt-12">
+      <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8">
+        {% renderFile "./src/_includes/content/about.njk" %}
+      </div>
+      <div class="bg-black py-8 px-8 lg:px-0">
+        <h2 class="text-center text-white">Our Team</h2>
+        {% renderFile "./src/_includes/content/about-profiles.njk" %}
+      </div>
+    </div>
+  </div>
+</main>

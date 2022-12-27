@@ -92,6 +92,20 @@ module.exports = async function () {
           alt: "Afghan refugees in trucks",
           plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
+        {
+          name: "kabul",
+          path: "/img/kabul.webp",
+          class: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
+          alt: "An aerial photograph of Kabul, Afghanistan.",
+          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
+        },
+        {
+          name: "blankProfile",
+          path: "/img/blank-profile-picture.webp",
+          class: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]",
+          alt: "Blank profile picture of a silhouette",
+          plaiceholderClass: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
+        },
       ].map(async (image) => ({
         name: image.name,
         html: await imageWithPlaiceholderBase64(

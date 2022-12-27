@@ -1,4 +1,5 @@
-@import "./custom.css";
+@import './custom.css';
+@import './about.css';
 
 @tailwind base;
 @tailwind components;
@@ -55,27 +56,27 @@
 
 @layer utilities {
   .bg-primary\/80 {
-    background-color: rgba(0,102,51,.80);
+    background-color: rgba(0, 102, 51, 0.8);
   }
 
   .bg-primary\/85 {
-    background-color: rgba(0,102,51,.85);
+    background-color: rgba(0, 102, 51, 0.85);
   }
 
   .bg-primary\/90 {
-    background-color: rgba(0,102,51,.90);
+    background-color: rgba(0, 102, 51, 0.9);
   }
 
   .bg-black\/80 {
-    background-color: rgba(0,0,0,.80);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
   .bg-black\/85 {
-    background-color: rgba(0,0,0,.85);
+    background-color: rgba(0, 0, 0, 0.85);
   }
 
   .bg-black\/90 {
-    background-color: rgba(0,0,0,.90);
+    background-color: rgba(0, 0, 0, 0.9);
   }
 
   .mh-fill {
@@ -118,15 +119,23 @@
     padding-top: 7rem;
   }
 
-  .pt-32 {  
+  .pt-32 {
     padding-top: 8rem;
   }
 
-  .max-h-screen-80 {  
+  .min-h-screen-60 {
+    min-height: 60vh;
+  }
+
+  .min-h-screen-80 {
+    min-height: 80vh;
+  }
+
+  .max-h-screen-80 {
     max-height: 80vh;
   }
 
-  .h-screen-80 {  
+  .h-screen-80 {
     height: 80vh;
   }
 }
