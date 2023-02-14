@@ -27,8 +27,16 @@
 <meta name="twitter:title" property="og:title" itemprop="name" content="{{ title or site.title }} - {{ site.title }}">
 <meta name="twitter:description" property="og:description" itemprop="description" content="{{ description or site.description }}">
 <meta name="theme-color" content="#ffffff">
-<link rel="shortcut icon" href="{{ site.favicon }}">
-<link rel="apple-touch-icon" href="{{ site.image }}">
+
+<!-- Icons -->
+<link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon }}">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512"  href="/img/android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
 <link rel="image_src" href="{{ site.image }}">
+
 <link rel="stylesheet" href="/css/page.css">
 <script defer src="/js/alpine.js"></script>

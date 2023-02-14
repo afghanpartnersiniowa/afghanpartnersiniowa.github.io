@@ -109,6 +109,13 @@ module.exports = async function () {
           alt: "Blank profile picture of a silhouette",
           plaiceholderClass: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
         },
+        {
+          name: "soniyaAzhman",
+          path: "/img/soniya-azhman.png",
+          class: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]",
+          alt: "Profile picture of Soniya Azhman",
+          plaiceholderClass: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
+        },
       ].map(async (image) => ({
         name: image.name,
         html: await imageWithPlaiceholderBase64(
