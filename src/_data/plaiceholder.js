@@ -9,7 +9,8 @@ async function imageShortcode(src, cls, alt, sizes) {
   let metadata = await Image(transformedSrc, {
     widths: [600, 900, 1500],
     formats: ["webp"],
-    outputDir: process.env.NODE_ENV === 'preview' ? "./preview/img/" : "./public/img/",
+    outputDir:
+      process.env.NODE_ENV === "preview" ? "./preview/img/" : "./public/img/",
   });
 
   const imageAttributes = {
@@ -28,10 +29,15 @@ async function imageShortcode(src, cls, alt, sizes) {
   return Image.generateHTML(metadata, imageAttributes);
 }
 
-const defaultClass =
-  "z-[-1] absolute inset-0 filter w-full h-full";
+const defaultClass = "z-[-1] absolute inset-0 filter w-full h-full";
 
-async function imageWithPlaiceholderBase64(src, cls, alt, sizes, plaiceholderClass) {
+async function imageWithPlaiceholderBase64(
+  src,
+  cls,
+  alt,
+  sizes,
+  plaiceholderClass
+) {
   const image = await imageShortcode(src, cls, alt, sizes);
   const { base64 } = await getPlaiceholder(src, { dir: "./src/static" });
 
@@ -60,8 +66,10 @@ module.exports = async function () {
         {
           name: "hero",
           path: "/img/children-war.webp",
-          class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          class:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          plaiceholderClass:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
           name: "afghansHelpingAfghans",
@@ -87,35 +95,28 @@ module.exports = async function () {
         {
           name: "flags",
           path: "/img/afghanistan-american-flags.webp",
-          class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          class:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          plaiceholderClass:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
           name: "refugeesTruck",
           path: "/img/afghanistan-refugees-truck.jpeg",
-          class: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          class:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
+          plaiceholderClass:
+            "z-[-1] fixed object-cover pointer-events-none h-screen-80 sm:h-auto w-full",
         },
         {
           name: "kabul",
           path: "/img/kabul.webp",
-          class: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
-          plaiceholderClass: "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
+          class:
+            "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
+          plaiceholderClass:
+            "z-[-1] fixed object-cover pointer-events-none min-h-screen-60 sm:h-auto w-full",
         },
-        {
-          name: "blankProfile",
-          path: "/img/blank-profile-picture.webp",
-          class: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]",
-          alt: "Blank profile picture of a silhouette",
-          plaiceholderClass: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
-        },
-        {
-          name: "soniyaAzhman",
-          path: "/img/soniya-azhman.png",
-          class: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]",
-          alt: "Profile picture of Soniya Azhman",
-          plaiceholderClass: "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
-        },
+        ...profilePictures,
       ].map(async (image) => ({
         name: image.name,
         html: await imageWithPlaiceholderBase64(
@@ -132,3 +133,32 @@ module.exports = async function () {
     return prev;
   }, {});
 };
+
+const profilePictures = [
+  {
+    name: "blankProfile",
+    path: "/img/blank-profile-picture.webp",
+    alt: "Blank profile picture of a silhouette",
+  },
+  {
+    name: "safi",
+    path: "/img/shir-agha-safi.png",
+    alt: "Profile picture of Shir Agha Safi",
+  },
+  {
+    name: "soniyaAzhman",
+    path: "/img/soniya-azhman.png",
+    alt: "Profile picture of Soniya Azhman",
+  },
+  {
+    name: "ferozRasheedzai",
+    path: "/img/feroz-rasheedzai.png",
+    alt: "Profile picture of Feroz Rasheedzai",
+  },
+].map((profilePic) => ({
+  ...profilePic,
+  class:
+    "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]",
+  plaiceholderClass:
+    "shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 w-[150px] max-w-[150px]",
+}));
