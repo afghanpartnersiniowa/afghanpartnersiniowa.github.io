@@ -133,8 +133,15 @@ nav#header {
   }
 
   nav#header {
-    margin-left: 9.5rem;
+    margin-left: 8.5rem;
     height: 3.5rem;
     max-width: calc(100vw-120px);
+  }
+}
+
+/* medium and larger */
+@media screen(md) {
+  nav#header {
+    margin-left: 9.5rem;
   }
 }

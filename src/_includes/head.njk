@@ -6,14 +6,15 @@
 <link rel="preload" href="/font/SourceSansPro-Regular.woff2" as="font" crossorigin>
 <link rel="preload" href="/font/SourceSansPro-Bold.woff2" as="font" crossorigin>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>{{ pageTitle or title }} - {{ site.title }}</title>
+<title>{{ (title + " - " + site.title) if title else site.title }}</title>
 <meta name="description" content="{{ description or site.description }}">
-<meta name="author" content="{{ site.author }}">
+<meta name="author" content="{{ site.title }}">
 <meta name="robots" content="{{ 'noindex' if env.isPreview else 'index,follow' }}">
+<meta name="keywords" content="Afghanistan,refugees,Des Moines,Iowa,Afghans,Afghan Partners,volunteer,refugee support">
 <!-- Social Metadata -->
 <meta property="og:locale" content="{{ site.language }}">
-<meta property="og:site_name" content="{{ site.author }}">
-<meta property="og:title" content="{{ title or site.title }} - {{ site.title }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ (title + " - " + site.title) if title else site.title }}">
 <meta property="og:description" content="{{ description or site.description }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ absolutePageUrl }}">
@@ -22,9 +23,12 @@
 <meta property="og:image:width" content="512" />
 <meta property="og:image:height" content="512" />
 <meta property="og:image:alt" content="The Afghan Partners in Iowa logo. The American and Afghanistan flags.">
+<meta itemprop="name" content="{{ site.title }}">
+<meta itemprop="url" content="{{ absolutePageUrl }}">
+<meta itemprop="description" content="{{ description or site.description }}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:domain" content="www.afghanpartnersiniowa.org">
-<meta name="twitter:title" property="og:title" itemprop="name" content="{{ title or site.title }} - {{ site.title }}">
+<meta name="twitter:title" property="og:title" itemprop="name" content="{{ (title + " - " + site.title) if title else site.title }}">
 <meta name="twitter:description" property="og:description" itemprop="description" content="{{ description or site.description }}">
 <meta name="theme-color" content="#ffffff">
 <meta name="google-site-verification" content="ufePQylw8iP8sWPyVYfi6n4o7QNDjOEsxnRzMRgT6VI" />

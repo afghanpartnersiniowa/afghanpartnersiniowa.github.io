@@ -38,7 +38,7 @@
   }
 
   a.nav {
-    @apply w-auto px-3 py-3 sm:text-base md:text-lg font-bold text-center uppercase text-white hover:no-underline hover:text-gray-400 md:flex md:py-0;
+    @apply w-auto px-3 py-3 sm:text-sm md:text-base lg:text-lg font-bold text-center uppercase text-white hover:no-underline hover:text-gray-400 md:flex md:py-0;
   }
 
   a.anchor {

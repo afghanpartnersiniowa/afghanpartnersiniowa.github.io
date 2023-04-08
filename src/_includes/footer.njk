@@ -7,21 +7,27 @@
   {% set delim = joiner('<div class="w-1/2 h-px mx-auto bg-white sm:h-auto sm:w-px sm:mx-0"></div>') %}
   {% for link in links -%}
     {{ delim() | safe }}
-    <div class="px-6 py-2 text-center text-white">
-      <a class="no-underline" href="/{{ link | replace(' ', '-') | lower }}">{{ link }}</a>
+    <div class="px-6 py-2 text-center text-white sm:flex">
+      <a class="no-underline sm:my-auto" href="/{{ link | replace(' ', '-') | lower }}">{{ link }}</a>
     </div>
   {%- endfor %}
+  {{ delim() | safe }}
+  <div class="px-6 py-2 text-center text-white">
+    {% for item in site.social %}
+      <p><a href="{{ item.url }}" class="no-underline" target="_blank" rel="noopener noreferrer nofollow">{{ item.title }}</a></p>
+    {% endfor %}
+  </div>
 </footer>
 <div class="w-full bg-black text-white py-5">
   <div class="w-full m-auto grid md:w-4/5 xl:w-3/4 md:grid-cols-2 px-4 md:px-0">
     <div class="text-center mb-4 md:mb-0 md:text-left md:w-3/4 xl:w-full">
       <p class="inline-block text-sm font-light">
-        {{ site.author }} is a registered 501(c)(3) not-for-profit organization.
+        {{ site.title }} is a registered 501(c)(3) not-for-profit organization.
       </p>
     </div>
     <div class="text-center md:text-right w-full">
       <p class="inline-block text-sm font-light">
-        Copyright &copy; {{ site.author }}, <span x-data x-text="new Date().getFullYear()"></span>
+        Copyright &copy; {{ site.title }}, <span x-data x-text="new Date().getFullYear()"></span>
       </p>
     </div>
   </div>

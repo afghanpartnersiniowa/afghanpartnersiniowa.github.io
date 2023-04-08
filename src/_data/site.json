@@ -1,9 +1,24 @@
 {
   "title": "Afghan Partners in Iowa",
   "description": "Helping Afghans who are victims of terrorism",
-  "author": "Afghan Partners in Iowa",
   "favicon": "/img/favicon.ico",
   "image": "/img/logo-title.png",
   "language": "en",
-  "social": []
+  "social": [
+    {
+        "title": "Facebook",
+        "url": "https://www.facebook.com/afghanpartnersiniowa",
+        "image": "#facebook-unauth-icon"
+    },
+    {
+        "title": "Instagram",
+        "url": "https://www.instagram.com/afghanpartnersiniowa/",
+        "image": "#instagram-icon"
+    },
+    {
+        "title": "Twitter",
+        "url": "https://twitter.com/afghanpartners",
+        "image": "#twitter-icon"
+    }
+  ]
 }
