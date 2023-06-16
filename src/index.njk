@@ -71,10 +71,17 @@ head: >
       </div>
     </div>
   </div>
-  <div class="bg-black text-gray-300 w-full sm:2/3 md:w-1/2 md:m-auto px-4 pt-5">
+  <div class="bg-gray-200 text-black w-full px-4 pt-5">
     <h2 class="text-4xl text-center mb-12">Have questions? Contact us</h2>
-    <div class="mb-8">
-      {% renderFile "./src/_includes/content/contact-us-form.njk", env %}
+    <div class="mb-8 sm:2/3 md:w-1/2 md:m-auto">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe57QZ1oft5MCgXoqOkBN5Dl5kTNoX6kGsO7yudTu7EQzfIAg/viewform?embedded=true"
+        style="min-height:1200px"
+        width="100%"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+      >Loading…</iframe>
     </div>
   </div>
 </main>
