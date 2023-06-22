@@ -2,7 +2,12 @@
 layout: base.njk
 title: News
 desc: Afghan Partners in Iowa
+head: >
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://www.facebook.com">
 ---
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0" nonce="7LaZsBhn"></script>
 {% import "./_includes/macros/card.njk" as c %}
 <header>
   <div>
@@ -12,19 +17,32 @@ desc: Afghan Partners in Iowa
 </header>
 
 <main id="main-content" class="mt-18 flex flex-col items-center justify-center w-full">
-  <div class="self-center w-full px-4 pt-8 sm:w-2/3 xl:w-1/2 sm:px:0 min-h-screen">
-    <h1 class="text-center tracking-widest uppercase text-white">{{ title }}</h1>
-    {{ c.card(
-    'Talk of Iowa',
-    'Safi, Executive Director of Afghan Partners in Iowa, was a guest on Talk of Iowa - IPR News on November 30th, 2022. <a class="text-secondary underline" href="https://podcasts.apple.com/us/podcast/talk-of-iowa/id636025604?i=1000588327431" target="_blank" rel="noopener noreferrer nofollow">Listen</a>',
-    'December 1st, 2022',
-    'https://www.iowapublicradio.org/podcast/talk-of-iowa/2022-12-01/a-former-afghan-military-major-channels-heartbreak-into-hope-for-fellow-evacuees-in-iowa'
-    ) }}
-    {{ c.card(
-    'Afghan Adjustment Act',
-    'The Afghan Adjustment Act is the only clear path to citizenship for Afghan Refugees living in the United States. Members of Afghan Partners in Iowa, along with Military Veterans, met with Senator Chuck Grassley to advocate for the Afghan Adjustment Act.',
-    'October 15th, 2022',
-    'https://www.facebook.com/DSMRefugeeSupport/posts/pfbid02kpc6L5eovV6UQbmR1sgzHXUMqgA1oifEsRTo8F8mu47SmfD2Dzp5JBmRRaAaLhETl'
-    ) }}
+  <div class="self-center w-full px-4 pt-8 sm:w-2/3 xl:w-1/2 sm:px:0">
+    <div class="w-full pt-4 pb-6 px-0 sm:px-0 text-center sm:px-8 bg-gray-600/90 text-white">
+      <h1 class="text-center tracking-widest uppercase">{{ title }}</h1>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 xl:grid-cols-3 xl:gap-6 w-full xl:w-5/6 my-8 px-8 xl:px-0">
+    <div class="xl:col-span-1 xl:flex-none min-h-screen flex justify-center items-center">
+      <div class="fb-page w-[500px]" data-href="https://www.facebook.com/afghanpartnersiniowa" data-show-posts="true" data-small-header="true" data-adapt-container-width="true" data-width="500" data-height="1000" data-hide-cover="true" data-show-facepile="false" data-lazy="true">
+        <blockquote cite="https://www.facebook.com/afghanpartnersiniowa" class="fb-xfbml-parse-ignore">
+          <a href="https://www.facebook.com/afghanpartnersiniowa">Afghan Partners In Iowa</a>
+        </blockquote>
+      </div>
+    </div>
+    <div class="mx-auto xl:col-span-2 min-h-screen">
+      {{ c.card(
+        'Talk of Iowa',
+        'Safi, Executive Director of Afghan Partners in Iowa, was a guest on Talk of Iowa - IPR News on November 30th, 2022. <a class="text-secondary underline" href="https://podcasts.apple.com/us/podcast/talk-of-iowa/id636025604?i=1000588327431" target="_blank" rel="noopener noreferrer nofollow">Listen</a>',
+        'December 1st, 2022',
+        'https://www.iowapublicradio.org/podcast/talk-of-iowa/2022-12-01/a-former-afghan-military-major-channels-heartbreak-into-hope-for-fellow-evacuees-in-iowa'
+      ) }}
+      {{ c.card(
+        'Afghan Adjustment Act',
+        'The Afghan Adjustment Act is the only clear path to citizenship for Afghan Refugees living in the United States. Members of Afghan Partners in Iowa, along with Military Veterans, met with Senator Chuck Grassley to advocate for the Afghan Adjustment Act.',
+        'October 15th, 2022',
+        'https://www.facebook.com/DSMRefugeeSupport/posts/pfbid02kpc6L5eovV6UQbmR1sgzHXUMqgA1oifEsRTo8F8mu47SmfD2Dzp5JBmRRaAaLhETl'
+      ) }}
+    </div>
   </div>
 </main>
