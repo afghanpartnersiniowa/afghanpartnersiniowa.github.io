@@ -151,11 +151,6 @@ const profilePictures = [
     alt: "Profile picture of Feroz Rasheedzai",
   },
   {
-    name: "fazalMoneer",
-    path: "/img/fazal-moneer.png",
-    alt: "Profile picture of Fazal Moneer",
-  },
-  {
     name: "abdulYaqubi",
     path: "/img/abdul-yaqubi.png",
     alt: "Profile picture of Abdul Hamid Yaqubi",
