@@ -18,11 +18,11 @@
   <div id="menu"
     class="fixed inset-0 flex-col items-center self-end justify-center hidden h-full py-6 sm:relative sm:w-auto sm:self-center sm:flex sm:flex-row sm:py-0 bg-primary-700/90 z-[2]">
     <a class="nav" href="/">Home</a>
-    <a class="nav" href="/about-us">About us</a>
+    <a class="nav" href="/about-us">About<span class="hidden lg:inline-block">&nbsp;us</span></a>
     <a class="nav" href="/request-aid">Request aid</a>
     <a class="nav" href="/how-to-help">How to help</a>
     <a class="nav" href="/news">News</a>
-    <div class="flex flex-row flex-wrap items-center justify-center py-3 text-white md:px-8">
+    <div class="hidden lg:flex flex-row flex-wrap items-center justify-center py-3 text-white lg:px-8">
       <ul class="flex m-0 mx-auto text-center">
         {% for item in site.social %}
         <li class="p-1">
@@ -36,7 +36,7 @@
         {% endfor %}
       </ul>
     </div>
-    <div class="flex flex-row flex-wrap items-center justify-center py-4 md:py-0 md:px-8 md:h-full">
+    <div class="flex flex-row flex-wrap items-center justify-center py-4 md:py-0 lg:px-8 md:h-full">
         <a class="w-auto py-3 px-4 sm:text-sm md:text-base md:py-1 lg:text-lg font-bold text-center hover:no-underline bg-[#00a5a5] hover:bg-[#008c8c] text-white rounded-md"
            href="https://interland3.donorperfect.net/weblink/weblink.aspx?name=E355180&id=11" target="_blank" rel="noopener noreferrer nofollow">
           Donate &#9825;
