@@ -67,16 +67,20 @@
     background-color: rgba(0, 102, 51, 0.9);
   }
 
-  .bg-black\/80 {
-    background-color: rgba(0, 0, 0, 0.8);
+  .bg-gray-950 {
+    background-color: #030712;
   }
 
-  .bg-black\/85 {
-    background-color: rgba(0, 0, 0, 0.85);
+  .bg-gray\/80 {
+    background-color: #030712cc;
   }
 
-  .bg-black\/90 {
-    background-color: rgba(0, 0, 0, 0.9);
+  .bg-gray\/85 {
+    background-color: #030712d9;
+  }
+
+  .bg-gray\/90 {
+    background-color: #030712e6;
   }
 
   .mh-fill {
