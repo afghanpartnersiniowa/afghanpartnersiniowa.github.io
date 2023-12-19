@@ -18,6 +18,8 @@ desc: Afghan Partners in Iowa
     <div class="mt-12">
       <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8">
         {% renderFile "./src/_includes/content/about.njk" %}
+        <p class="mt-6">If you are Afghan and need help, please fill out the <a class="text-secondary-500" href="/request-aid">assistance request form.</a>
+        <p class="mt-6">Please fill out the <a class="text-secondary-500" href="/how-to-help">volunteer interest form</a> if you would like to help Afghan refugees in Des Moines, IA.
       </div>
       <div class="bg-gray-950 py-8 px-8 lg:px-0">
         <h2 class="text-center text-white">Our Team</h2>
@@ -34,7 +36,15 @@ desc: Afghan Partners in Iowa
             {{ plaiceholder.abdulYaqubi | safe }}
           {% endcall %}
 
-          {% call profile.card('Feroz Rasheedzai', 'Driving License Aid since 2022', '<p>Feroz is an Outreach specialist interpreter and Community mobilizer with EveryStep Non-Profit Organization and serves as a board member of Afghan Partners in Iowa.</p><p>He has also worked with different international organizations in Afghanistan as a Project Managing Director and Chief Executive Officer for several years and has management and basic marketing expertise. In addition, he has been a teacher with six years experience in teaching English language as a second language in Private Universities and English Academic Centers in Afghanistan.</p><p>Feroz is a university graduate from Economy Faculty in Management section and studied one-year Master Degree. Then when Afghanistan fell down he came to the USA.</p><p>He speaks four languages. Before entering to the US, Feroz was actively working with DOS-Annex US Embassy as an interpreter.</p><p>He is going to start college at DMACC and wants to study computer and technology system and communications.</p><p>Goals for living in the US: Serving community to meet their goals. The more stable our community, the stronger our nation.</p>') %}
+          {% call profile.card('Fahima Rahimi', 'Family Navigator since 2023',
+           '<p>Meet Fahima Rahimi, a strong and determined woman who faced big challenges with courage. She studied law and political science in Afghanistan at Mili Institute of Higher Education and worked as a defense attorney.</p><p>When Afghanistan went through tough times in 2021, Fahima had to leave everything behind and become a refugee in the USA. Life as a refugee was not easy, but instead of giving up, Fahima decided to help others going through the same struggles.</p><p>In 2023, she joined Afghan Partners in Iowa and became a family navigator, helping Afghan refugees in Iowa. Fahima&apos;s story is about turning hard times into a chance to help others, showing that even in tough situations, kindness and support can make a big difference.</p>'
+          ) %}
+            {{ plaiceholder.fahimaRahimi | safe }}
+          {% endcall %}
+
+          {% call profile.card('Feroz Rasheedzai', 'Driving License Aid since 2022',
+           '<p>Feroz is an Outreach specialist interpreter and Community mobilizer with EveryStep Non-Profit Organization and serves as a board member of Afghan Partners in Iowa.</p><p>He has also worked with different international organizations in Afghanistan as a Project Managing Director and Chief Executive Officer for several years and has management and basic marketing expertise. In addition, he has been a teacher with six years experience in teaching English language as a second language in Private Universities and English Academic Centers in Afghanistan.</p><p>Feroz is a university graduate from Economy Faculty in Management section and studied one-year Master Degree. Then when Afghanistan fell down he came to the USA.</p><p>He speaks four languages. Before entering to the US, Feroz was actively working with DOS-Annex US Embassy as an interpreter.</p><p>He is going to start college at DMACC and wants to study computer and technology system and communications.</p><p>Goals for living in the US: Serving community to meet their goals. The more stable our community, the stronger our nation.</p>'
+          ) %}
             {{ plaiceholder.ferozRasheedzai | safe }}
           {% endcall %}
 

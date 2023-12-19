@@ -155,6 +155,11 @@ const profilePictures = [
     path: "/img/abdul-yaqubi.png",
     alt: "Profile picture of Abdul Hamid Yaqubi",
   },
+  {
+    name: "fahimaRahimi",
+    path: "/img/fahima-rahimi.png",
+    alt: "Profile picture of Fahima Rahimi",
+  },
 ].map((profilePic) => ({
   ...profilePic,
   class:
