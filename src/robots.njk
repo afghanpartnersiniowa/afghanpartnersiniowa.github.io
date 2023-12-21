@@ -3,12 +3,7 @@ layout: false
 permalink: robots.txt
 eleventyExcludeFromCollections: true
 ---
-{% if env.isPreview -%}
-User-agent: *
-Disallow: /
-{% else %}
 Sitemap: {{ env.url }}/sitemap.xml
 
 User-agent: *
 Disallow:
-{%- endif %}

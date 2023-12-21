@@ -9,7 +9,7 @@
 <title>{{ (title + " - " + site.title) if title else site.title }}</title>
 <meta name="description" content="{{ description or site.description }}">
 <meta name="author" content="{{ site.title }}">
-<meta name="robots" content="{{ 'noindex' if env.isPreview else 'index,follow' }}">
+<meta name="robots" content="index,follow">
 <meta name="keywords" content="Afghanistan,refugees,Des Moines,Iowa,Afghans,Afghan Partners,volunteer,refugee support">
 <!-- Social Metadata -->
 <meta property="og:locale" content="{{ site.language }}">

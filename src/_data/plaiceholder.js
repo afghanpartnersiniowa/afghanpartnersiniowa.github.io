@@ -9,8 +9,7 @@ async function imageShortcode(src, cls, alt, sizes) {
   let metadata = await Image(transformedSrc, {
     widths: [600, 900, 1500],
     formats: ["webp"],
-    outputDir:
-      process.env.NODE_ENV === "preview" ? "./preview/img/" : "./public/img/",
+    outputDir: "./public/img/",
   });
 
   const imageAttributes = {

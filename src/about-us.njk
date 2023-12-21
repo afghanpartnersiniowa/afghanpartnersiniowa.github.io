@@ -17,9 +17,7 @@ description: We are Afghans helping Afghans. Afghan Partners in Iowa is experien
     <h1 class="text-center tracking-widest uppercase text-gray-800">{{ title }}</h1>
     <div class="mt-12">
       <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8">
-        {% renderFile "./src/_includes/content/about.njk" %}
-        <p class="mt-6">If you are Afghan and need help, please fill out the <a class="text-secondary-500" href="/request-aid">assistance request form.</a>
-        <p class="mt-6">Please fill out the <a class="text-secondary-500" href="/how-to-help">volunteer interest form</a> if you would like to help Afghan refugees in Des Moines, IA.
+        {{ contentful.pages.aboutus.paragraph1 | safe }}
       </div>
       <div class="bg-gray-950 py-8 px-8 lg:px-0">
         <h2 class="text-center text-white">Our Team</h2>
