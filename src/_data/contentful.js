@@ -24,12 +24,12 @@ module.exports = async function () {
 
   const pages = await getPages();
 
-  const contentful = {
+  const contentfulData = {
     pages,
   };
 
-  await asset.save(contentful, "json");
-  return contentful;
+  await asset.save(contentfulData, "json");
+  return contentfulData;
 };
 
 const paragraphClass = "mb-6";

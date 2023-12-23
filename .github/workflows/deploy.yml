@@ -6,6 +6,12 @@ on:
     branches: ["main"]
     paths-ignore:
       - '.github/**'
+  workflow_call:
+    secrets:
+      CTFL_ACCESSTOKEN:
+        required: true
+      CTFL_SPACE:
+        required: true
   workflow_dispatch:
 
 permissions:
