@@ -25,23 +25,21 @@ jobs:
           LAST_COMMIT=$(git show --no-patch --format=%ct HEAD)
           LAST_CTFL_CHANGE=$(node ./.github/scripts/get-latest-contentful-entry.js)
 
-          echo "Last commit: $(date -d@'$LAST_COMMIT'), last Contentful change: $(date -d@'$LAST_CTFL_CHANGE')"
-
           CURRENT_TS=$(date +%s)
           DAY_SEC=$((24 * 60 * 60))
           DATE_24HRS_AGO=$(($CURRENT_TS - $DAY_SEC))
 
-          [ $LAST_COMMIT -ge $DATE_24HRS_AGO -o $LAST_CTFL_CHANGE -ge $DATE_24HRS_AGO ] && result="true" || result="false"
+          [ $LAST_COMMIT -ge $DATE_24HRS_AGO -o $LAST_CTFL_CHANGE -ge $DATE_24HRS_AGO ] && result="Y" || result="N"
 
           echo "Last change within 24 hours? $result"
-          echo "result=$result" >> $GITHUB_OUTPUT
+          echo "required=$result" >> $GITHUB_OUTPUT
         env:
           CTFL_SPACE: ${{ secrets.CTFL_SPACE }}
           CTFL_ACCESSTOKEN: ${{ secrets.CTFL_ACCESSTOKEN }}
 
   deploy:
     needs: check_deploy_required
-    if: needs.check_deploy_required.outputs.result == 'true'
+    if: ${{ needs.check_deploy_required.outputs.required }} == 'Y'
     runs-on: ubuntu-latest
     steps:
       - name: Build the project
