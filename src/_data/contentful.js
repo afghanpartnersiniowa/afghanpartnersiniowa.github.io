@@ -41,19 +41,15 @@ const contentfulOptions = {
     [BLOCKS.PARAGRAPH]: (node, next) =>
       `<p class="${paragraphClass}">${next(node.content)}</p>`,
     [BLOCKS.HEADING_1]: (node, next) =>
-      `<h1 class="text-2xl sm:text-4xl">${next(node.content)}</p>`,
+      `<h1 class="text-2xl sm:text-4xl">${next(node.content)}</h1>`,
     [BLOCKS.HEADING_2]: (node, next) =>
-      `<h2 class="text-xl sm:text-2xl">${next(node.content)}</p>`,
+      `<h2 class="text-xl sm:text-2xl">${next(node.content)}</h2>`,
     [BLOCKS.HEADING_3]: (node, next) =>
-      `<h3 class="text-lg sm:text-xl">${next(node.content)}</p>`,
+      `<h3 class="text-lg sm:text-xl">${next(node.content)}</h3>`,
     [BLOCKS.HEADING_4]: (node, next) =>
       `<p class="text-lg">${next(node.content)}</p>`,
     [INLINES.HYPERLINK]: (node, next) =>
-      `<a class="${
-        node.data.uri.startsWith(prodUrl)
-          ? "text-secondary-500"
-          : "text-secondary-300"
-      }" href="${node.data.uri}">${next(node.content)}</a>`,
+      `<a class="text-secondary-500" href="${node.data.uri}">${next(node.content)}</a>`,
   },
 };
 

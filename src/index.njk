@@ -30,6 +30,12 @@ head: >
 </header>
 <main id="main-content" class="bg-gray-950 flex flex-col items-center justify-center text-white">
   <div class="bg-gray-950 w-full px-4 pt-20 pb-10">
+    <div class="w-full text-center md:w-3/4 lg:w-2/3 xl:w-1/2 m-auto">
+      <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">Thank you</h2>
+      {{ contentful.pages.home.paragraph2 | safe | replace("text-secondary-500", "text-secondary-300") }}
+    </div>
+  </div>
+  <div class="bg-white w-full px-4 pt-20 pb-10 text-gray-800">
     <div class="w-full text-center md:w-11/12 m-auto">
       <div class="md:grid md:grid-cols-2 mb-8">
         <div class="relative w-3/4 md:w-full m-auto">
@@ -37,9 +43,9 @@ head: >
         </div>
         <div class="text-lg w-5/6 m-auto">
           <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">About us</h2>
-          {{ contentful.pages.home.paragraph2 | safe }}
+          {{ contentful.pages.home.paragraph3 | safe }}
           <div class="my-8">
-           <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-500/80 hover:bg-gray-500 hover:no-underline"
+           <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-700/80 hover:bg-gray-700 hover:no-underline"
               href="/about-us">Read more</a>
           </div>
         </div>
