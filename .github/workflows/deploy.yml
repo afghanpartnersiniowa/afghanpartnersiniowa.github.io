@@ -58,7 +58,7 @@ jobs:
           CTFL_SPACE: ${{ secrets.CTFL_SPACE }}
           CTFL_ACCESSTOKEN: ${{ secrets.CTFL_ACCESSTOKEN }}
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
