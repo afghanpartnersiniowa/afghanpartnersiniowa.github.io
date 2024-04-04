@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Donate
+description: Support Afghan Partners in Iowa with a financial contribution to help refugees from Afghanistan living in Iowa with employment, housing, immigration, interpretation, and transportation.
+date: Last Modified
+head: >
+  <link rel="preconnect" href="https://zeffy-scripts.s3.ca-central-1.amazonaws.com">
+---
+<header class="bg-white">
+  {% include "navbar.njk" %}
+</header>
+<main id="main-content" class="flex flex-col items-center justify-center w-full bg-white">
+  <div class="self-center w-11/12 pt-8">
+    <h1 class="text-center tracking-widest uppercase sr-only">{{ title }}</h1>
+    <div class="h-[2500px] sm:h-[2100px]" style="position:relative;overflow:hidden;width:100%;padding-top:100%">
+        <iframe title="Donation form powered by Zeffy"
+                style="position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%"
+                src="https://www.zeffy.com/en-US/embed/donation-form/65b30649-fafe-4787-992f-74884e49f7ba" allowpaymentrequest allowTransparency="true">
+        </iframe>
+    </div>
+    <script src=https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js></script>
+  </div>
+</main>
