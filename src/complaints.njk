@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: About us
+title: 'Ensuring Equity: Complaint Process'
 description: We are Afghans helping Afghans. Afghan Partners in Iowa is experienced in working with refugees from Afghanistan and we are here to help.
 date: Last Modified
 ---
@@ -16,7 +16,13 @@ date: Last Modified
     <h1 class="text-center tracking-widest uppercase text-gray-800">{{ title }}</h1>
     <div class="mt-12">
       <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8">
-        {{ contentful.pages.aboutus.paragraph1 | safe }}
+        {{ contentful.pages.complaints.paragraph1 | safe }}
+      </div>
+      <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8" dir="rtl" id="pashto">
+        {{ contentful.pages.complaints.paragraph2 | safe }}
+      </div>
+      <div class="m-auto w-full sm:w-2/3 xl:w-1/2 mb-16 px-8" id="english">
+        {{ contentful.pages.complaints.paragraph3 | safe }}
       </div>
     </div>
   </div>

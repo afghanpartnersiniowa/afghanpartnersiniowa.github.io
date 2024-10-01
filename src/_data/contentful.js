@@ -1,6 +1,4 @@
 const { AssetCache } = require("@11ty/eleventy-fetch");
-const slugify = require("@sindresorhus/slugify");
-const { prodUrl } = require("./env");
 
 const { BLOCKS, INLINES, MARKS } = require("@contentful/rich-text-types");
 const { documentToHtmlString } = require("@contentful/rich-text-html-renderer");
@@ -18,9 +16,9 @@ const client = contentful.createClient({
 module.exports = async function () {
   const asset = new AssetCache("contentful");
 
-  if (asset.isCacheValid("1d")) {
-    return asset.getCachedValue();
-  }
+  // if (asset.isCacheValid("1d")) {
+  //   return asset.getCachedValue();
+  // }
 
   const pages = await getPages();
 
@@ -50,6 +48,11 @@ const contentfulOptions = {
       `<p class="text-lg">${next(node.content)}</p>`,
     [INLINES.HYPERLINK]: (node, next) =>
       `<a class="text-secondary-500" href="${node.data.uri}">${next(node.content)}</a>`,
+    [BLOCKS.UL_LIST]: (node, next) =>
+      `<ul class="list-disc pl-4">${next(node.content)}</ul>`,
+    [BLOCKS.OL_LIST]: (node, next) =>
+      `<ol class="list-decimal pl-4">${next(node.content)}</ol>`,
+    [BLOCKS.LIST_ITEM]: (node, next) => `<li>${next(node.content)}</li>`,
   },
 };
 

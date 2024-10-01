@@ -1,0 +1,53 @@
+---
+layout: base.njk
+title: Our team
+description: We are Afghans helping Afghans. Afghan Partners in Iowa is experienced in working with refugees from Afghanistan and we are here to help.
+date: Last Modified
+---
+
+{% import "./_includes/macros/profile.njk" as profile %}
+
+<header class="min-h-screen-60">
+  <div>
+    {{ plaiceholder.kabul | safe }}
+  </div>
+  {% include "navbar.njk" %}
+</header>
+<main id="main-content" class="flex flex-col items-center justify-center w-full {{ mainClass or 'bg-white' }}">
+  <div class="self-center w-full pt-8">
+    <h1 class="text-center tracking-widest uppercase text-gray-800">{{ title }}</h1>
+    <div class="mt-12">
+      <div class="bg-gray-950 py-8 px-8 lg:px-0">
+        <div class="md:grid md:grid-cols-2 md:gap-16 my-16 m-auto w-full sm:w-5/6 lg:w-3/4 xl:w-2/3">
+          {% call profile.card('Shir Agha Safi', 'Executive Director since 2022',
+            '<p>Shir Agha Safi is a former military intelligence battalion commander in the Afghan National Army who dedicated his life to fighting terrorism and bringing peace to Afghanistan and the rest of the world. He was born and raised in Afghanistan, where he developed a strong sense of patriotism and a desire to serve his country.</p><p>As a major in the Afghan National Army, Shir Agha Safi led countless counter-terrorism operations over the course of 12 years. He fought against various terrorist groups and suffered injuries several times in the line of duty. Despite the risks, he remained committed to his mission and continued to serve his country with distinction.</p><p>However, after the collapse of the Afghan government in August 2021, Shir Agha Safi was forced to flee his home country and seek refuge in the United States. Once he arrived in Iowa, he quickly set to work establishing a non-profit organization called Afghan Partners in Iowa in June 2022. As the executive director of the organization, his primary goal is to help Afghan refugees become self-sufficient in their new home.</p><p>In addition to his work with Afghan Partners in Iowa, Shir Agha Safi is also a student at John Dee Bright College of Drake University. He is determined to further his education so that he can continue to make a positive impact in his community and beyond.</p><p>Shir Agha Safi is a devoted family man and proud father of two sons, Yaqoob Safi and Rashid Khan Safi, who are 10 and 4 years old, respectively. Despite the challenges he has faced in his life, he remains optimistic and committed to making a difference in the world.</p>'
+          ) %}
+            {{ plaiceholder.safi | safe }}
+          {% endcall %}
+
+          {% call profile.card('Abdul Hamid Yaqubi', 'Logistics Officer since 2022',
+           '<p>Abdul Hamid Yaqubi is a compassionate individual who is dedicated to serving his community. He is a married man with two daughters and holds a degree in law and justice. Yaqubi has a wealth of experience in journalism, having worked as a news reporter at Hewad radio and television from 2016 to 2021. He is known for his excellent reporting skills, attention to detail, and commitment to accuracy.</p><p>Yaqubi&apos;s commitment to helping others extends beyond his work in journalism. He is actively involved in assisting Afghan refugees who have resettled in Iowa. Yaqubi understands the challenges that refugees face when adjusting to life in a new country and is determined to provide support in any way he can. His ultimate goal is to see the Afghan community in Iowa succeed and thrive.</p><p>Yaqubi&apos;s dedication to serving others is a testament to his character and reflects his deep-rooted values. He believes that everyone deserves a chance to succeed and is committed to making a positive impact in the lives of those around him.</p>'
+          ) %}
+            {{ plaiceholder.abdulYaqubi | safe }}
+          {% endcall %}
+
+          {% call profile.card('Fahima Rahimi', 'Family Navigator since 2023',
+           '<p>Meet Fahima Rahimi, a strong and determined woman who faced big challenges with courage. She studied law and political science in Afghanistan at Mili Institute of Higher Education and worked as a defense attorney.</p><p>When Afghanistan went through tough times in 2021, Fahima had to leave everything behind and become a refugee in the USA. Life as a refugee was not easy, but instead of giving up, Fahima decided to help others going through the same struggles.</p><p>In 2023, she joined Afghan Partners in Iowa and became a family navigator, helping Afghan refugees in Iowa. Fahima&apos;s story is about turning hard times into a chance to help others, showing that even in tough situations, kindness and support can make a big difference.</p>'
+          ) %}
+            {{ plaiceholder.fahimaRahimi | safe }}
+          {% endcall %}
+
+          {% call profile.card('Feroz Rasheedzai', 'Driving License Aid since 2022',
+           '<p>Feroz is an Outreach specialist interpreter and Community mobilizer with EveryStep Non-Profit Organization and serves as a board member of Afghan Partners in Iowa.</p><p>He has also worked with different international organizations in Afghanistan as a Project Managing Director and Chief Executive Officer for several years and has management and basic marketing expertise. In addition, he has been a teacher with six years experience in teaching English language as a second language in Private Universities and English Academic Centers in Afghanistan.</p><p>Feroz is a university graduate from Economy Faculty in Management section and studied one-year Master Degree. Then when Afghanistan fell down he came to the USA.</p><p>He speaks four languages. Before entering to the US, Feroz was actively working with DOS-Annex US Embassy as an interpreter.</p><p>He is going to start college at DMACC and wants to study computer and technology system and communications.</p><p>Goals for living in the US: Serving community to meet their goals. The more stable our community, the stronger our nation.</p>'
+          ) %}
+            {{ plaiceholder.ferozRasheedzai | safe }}
+          {% endcall %}
+
+          {% call profile.card('Sweeta Noori', 'Coordinator of Kids Health since 2022', '<p>Sweeta Noori aids with medical and health matters for Afghan children.</p>') %}
+            {{ plaiceholder.blankProfile | safe }}
+          {% endcall %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
