@@ -23,7 +23,7 @@ head: >
     <div class="flex flex-col items-center self-center w-full px-4 sm:flex-row md:w-5/6 xl:w-2/3 sm:px-0 bg-transparent">
       <div class="w-full pt-10 pb-12 px-4 sm:px-0 text-center sm:px-8 bg-secondary-600/90 text-white">
         <h1 class="mb-6 font-bold tracking-wide text-xl marker:text-2xl sm:text-4xl">{{ site.title }}</h1>
-        {{ contentful.pages.home.paragraph1 | safe }}
+        <p class="text-lg"><span class="font-bold">Helping Afghans who are victims of terrorism.</span></p>
       </div>
     </div>
   </div>
@@ -32,7 +32,12 @@ head: >
   <div class="bg-gray-950 w-full px-4 pt-20 pb-10">
     <div class="w-full text-center md:w-3/4 lg:w-2/3 xl:w-1/2 m-auto">
       <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">Thank you</h2>
-      {{ contentful.pages.home.paragraph2 | safe | replace("text-secondary-500", "text-secondary-300") }}
+      <p class="text-lg">
+        As we step into a new year, we want to express our deepest gratitude for your unwavering support throughout 2023.
+        Your commitment has been the driving force behind the significant, positive impact we've achieved in aiding the Afghan community in Iowa to
+        become self-sufficient.&nbsp;<a class="text-secondary-300" href="https://www.afghanpartnersiniowa.org/announcement/2023-wrapped-2024-new-year/">Continue reading...</a>
+      </p>
+      <p class="mb-6"></p>
     </div>
   </div>
   <div class="bg-white w-full px-4 pt-20 pb-10 text-gray-800">
@@ -43,7 +48,8 @@ head: >
         </div>
         <div class="text-lg w-5/6 m-auto">
           <h2 class="text-4xl text-center mb-8 mt-8 md:mt-0">About us</h2>
-          {{ contentful.pages.home.paragraph3 | safe }}
+          <p class="mb-6">After the Taliban took control of Afghanistan in August 2021, tens of thousands of Afghans fled Afghanistan. To date, more than 900 of them have made their home in Iowa.</p>
+          <p class="mb-6">Established in 2022, Afghan Partners in Iowa aims to train Afghan refugees who speak English so they can help fellow Afghan refugees with their needs and challenges.</p>
           <div class="my-8">
            <a class="px-10 py-2 text-lg text-white rounded-full shadow-md bg-gray-700/80 hover:bg-gray-700 hover:no-underline"
               href="/about-us">Read more</a>
