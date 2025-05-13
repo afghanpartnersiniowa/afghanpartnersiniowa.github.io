@@ -3,10 +3,11 @@ name: Trigger deploy to GitHub Pages
 on:
   workflow_dispatch:
     inputs:
-      dry-run:
-        description: When true, the site will be generated but not deployed or made public.
+      publish:
+        description: Publish the site? If false, the site will be built and uploaded as a zip for review.
         required: false
         type: choice
+        default: 'true'
         options:
           - 'true'
           - 'false'
@@ -37,6 +38,6 @@ jobs:
         with:
           path: public
       - name: Deploy to GitHub Pages
-        if: ${{ github.event.inputs.dry-run == 'false' }}
+        if: ${{ github.event.inputs.publish == 'true' }}
         id: deployment
         uses: actions/deploy-pages@v4
